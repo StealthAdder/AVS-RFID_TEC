@@ -1,17 +1,4 @@
 /**
- * --------------------------------------------------------------------------------------------------------------------
- * Example sketch/program showing how to read data from more than one PICC to serial.
- * --------------------------------------------------------------------------------------------------------------------
- * This is a MFRC522 library example; for further details and other examples see: https://github.com/miguelbalboa/rfid
- *
- * Example sketch/program showing how to read data from more than one PICC (that is: a RFID Tag or Card) using a
- * MFRC522 based RFID Reader on the Arduino SPI interface.
- *
- * Warning: This may not work! Multiple devices at one SPI are difficult and cause many trouble!! Engineering skill
- *          and knowledge are required!
- *
- * @license Released into the public domain.
- *
  * Typical pin layout used:
  * -----------------------------------------------------------------------------------------
  *             MFRC522      Arduino       Arduino   Arduino    Arduino          Arduino
