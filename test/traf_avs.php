@@ -47,7 +47,7 @@ $date_time = $d->format("Y-m-d H:i:s.u");
 <body>
    <h1>AVS RFID-TEC.</h1>
    <span>Click to clear.</span>
-   <form action="/test/clear.php" method="post">
+   <form action="/AVS-RFID_TEC/test/clear.php" method="post">
 	<button name="traf-clear">All clear</button>
    </form>
    <a href="index.php">Home</a>

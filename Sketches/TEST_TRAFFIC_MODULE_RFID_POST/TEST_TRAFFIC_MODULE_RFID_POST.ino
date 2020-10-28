@@ -180,8 +180,8 @@ void rfid() {
   Serial.println("Initalizing Trasmission.....");
   //  sending i guess
   if(client.connect(server, 80)) {
-    client.println("POST /test/data.php HTTP/1.1");
-    Serial.println("POST /test/data.php HTTP/1.1");
+    client.println("POST /AVS-RFID_TEC/test/data.php HTTP/1.1");
+    Serial.println("POST /AVS-RFID_TEC/test/data.php HTTP/1.1");
     client.println("Host: 192.168.1.122");
     Serial.println("Host: 192.168.1.122");
     client.println("Content-Type: application/x-www-form-urlencoded");

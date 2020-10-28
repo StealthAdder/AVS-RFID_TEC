@@ -178,8 +178,8 @@ void loop() {
 
 //client.print is the actual function doing transmission, we use serial.print to show the output on serial monitor for debugging.
   if(client.connect(server, 80)) {
-    client.println("POST /test/data.php HTTP/1.1");
-    Serial.println("POST /test/data.php HTTP/1.1"); //TYPE = POST, directory = /test/data.php and version HTTP/1.1.
+    client.println("POST /AVS-RFID_TEC/test/v_data.php HTTP/1.1");
+    Serial.println("POST /AVS-RFID_TEC/test/v_data.php HTTP/1.1"); //TYPE = POST, directory = /test/data.php and version HTTP/1.1.
     client.println("Host: 192.168.1.122");
     Serial.println("Host: 192.168.1.122");
     client.println("Content-Type: application/x-www-form-urlencoded");

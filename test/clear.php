@@ -10,7 +10,7 @@ $conn = mysqli_connect($server, $user, $pass, $db);
 
 if(mysqli_connect_error()) {
     echo "Error: Check connection";
-    header("Location: /test/index.php?error=sqlconnectionerror");
+    header("Location: /AVS-RFID_TEC/test/index.php?error=sqlconnectionerror");
     exit();
 }
 else{
@@ -19,14 +19,14 @@ else{
 
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql)) {
-            header("Location: /test/traf_avs.php?error=sqlerror1");
+            header("Location: /AVS-RFID_TEC/test/traf_avs.php?error=sqlerror1");
             exit();
             }
         else {
             mysqli_stmt_bind_param($stmt);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
-            header("Location: /test/traf_avs.php?CLEAR=success");
+            header("Location: /AVS-RFID_TEC/test/traf_avs.php?CLEAR=success");
             exit();
         }
     }
@@ -36,19 +36,19 @@ else{
         $stmt = mysqli_stmt_init($conn);
 
         if(!mysqli_stmt_prepare($stmt, $sql)) {
-            header("Location: /test/avs.php?error=sqlerror1");
+            header("Location: /AVS-RFID_TEC/test/avs.php?error=sqlerror1");
             exit();
             }
         else {
             mysqli_stmt_bind_param($stmt);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
-            header("Location: /test/avs.php?CLEAR=success");
+            header("Location: /AVS-RFID_TEC/test/avs.php?CLEAR=success");
             exit();
         }
     }
     else {
-        header("Location: /test/avs.php?CLEAR=success");
+        header("Location: /AVS-RFID_TEC/test/avs.php?CLEAR=success");
         exit();
     }
 }
