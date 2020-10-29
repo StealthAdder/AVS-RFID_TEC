@@ -1,11 +1,6 @@
 <!-- Signal violation reading receiver for arduino.-->
 <?php
-
-    $server="192.168.1.122";
-    $user="bluejay";
-    $pass="bluejay@123";
-    $db="cards";
-    
+include("/var/www/html/access/access.php");
     //Var values from arduino are stored here. 
     $cid=$_POST["cid"]; //card no
     $loc_name=$_POST["loc_name"]; //location name
@@ -25,9 +20,9 @@
     // echo $date_time;
 
     // echo $cid;
-    
-    $conn = mysqli_connect($server, $user, $pass, $db);
 
+    $conn = mysqli_connect($server, $user, $pass, 'cards');
+    unset($server, $user, $pass);
     if(mysqli_connect_error()) {
         echo "Error: Check connection";
         header("Location: /test/index.php?error=sqlconnectionerror");

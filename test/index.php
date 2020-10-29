@@ -1,12 +1,9 @@
 <?php
+include("/var/www/html/access/access.php");
 
-$server="192.168.1.122";
-$user="bluejay";
-$pass="bluejay@123";
-$db="cards";
+$conn = mysqli_connect($server, $user, $pass, 'cards');
+unset($server, $user, $pass);
     
-$conn = mysqli_connect($server, $user, $pass, $db);
-
 if(mysqli_connect_error()) {
     echo "Error: Check connection";
     header("Location: /test/index.php?error=sqlconnectionerror");
@@ -16,10 +13,10 @@ else{
     echo "Connected to DB";
 }
 
-$sql = 'SELECT * FROM RF_READS ORDER BY ID DESC';
+// $sql = 'SELECT * FROM RF_READS ORDER BY ID DESC';
 
-$result = mysqli_query($conn, $sql);
-$num_row = mysqli_num_rows($result);
+// $result = mysqli_query($conn, $sql);
+// $num_row = mysqli_num_rows($result);
 
 // date_default_timezone_set('Asia/Kolkata');
 // $date_time = date('d-m-Y H:i');

@@ -1,12 +1,10 @@
 <?php
 
     
-$server="192.168.1.122";
-$user="bluejay";
-$pass="bluejay@123";
-$db="cards";
+include("/var/www/html/access/access.php");
 
-$conn = mysqli_connect($server, $user, $pass, $db);
+$conn = mysqli_connect($server, $user, $pass, 'cards');
+unset($server, $user, $pass);
 
 if(mysqli_connect_error()) {
     echo "Error: Check connection";
