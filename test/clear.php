@@ -1,7 +1,7 @@
 <?php
 
     
-include("/var/www/html/access/access.php");
+include("/var/www/html/access/access_test.php");
 
 $conn = mysqli_connect($server, $user, $pass, 'cards');
 unset($server, $user, $pass);

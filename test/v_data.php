@@ -2,7 +2,7 @@
 
 <?php
 
-include("/var/www/html/access/access.php");
+include("/var/www/html/access/access_test.php");
     
     //Var values from arduino are stored here. 
     $cid=$_POST["cid"]; //card no
