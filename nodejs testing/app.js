@@ -4,17 +4,18 @@ const app = express()
 
 app.use(express.json())
 
-app.get('/', (req, res) =>{
+app.post('/', (req, res) =>{
     console.log(req.query)
     res.send(req.query) // displays query string
+    // console.log(req.url);
 })
 
-app.get('/:id',(req,res)=>{
-    res.send(req.params) // url id stuff
-})
+// app.get('/:id',(req,res)=>{
+//     res.send(req.params) // url id stuff
+// })
 
 const port = process.env.PORT || 3000
-app.listen(port, ()=>{
+app.listen(port, '192.168.1.10',()=>{
     console.log(`server is starting at ${port}`)
 })
 
