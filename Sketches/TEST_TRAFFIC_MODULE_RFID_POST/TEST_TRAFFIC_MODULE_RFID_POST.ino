@@ -28,7 +28,7 @@ byte mac[] = {
 };
 
 byte ip[] = { 192, 168, 1, 241};
-byte server[] = { 192, 168, 1, 122 };
+byte server[] = { 192, 168, 1, 10 };
 byte myDns[] = { 192, 168, 1, 1 };
 
 String data; //variable to be posted.
@@ -152,7 +152,7 @@ void rfid() {
 
   String Station_info;
   String Station_name="HEBBAL_POST";
-  String Station_ZIPCODE="560 032";
+  String Station_ZIPCODE="560%20032";
   String Reader_ID = "AVS-ID-001";
   Station_info = (String(Station_name)+String(Reader_ID)+" ZIP-"+String(Station_ZIPCODE));
   Serial.print(Station_info);
@@ -161,7 +161,7 @@ void rfid() {
   
   for (byte i = 0; i < mfrc522.uid.size; i++) 
   {
-     content.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " "));
+     content.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? "0" : ""));
      content.concat(String(mfrc522.uid.uidByte[i], HEX));  
   }
   content.toUpperCase();
@@ -175,17 +175,17 @@ void rfid() {
   }
 
   data = "cid="+content+"&loc_name="+Station_name+"&loc_zip="+Station_ZIPCODE+"&rid="+Reader_ID;
-
+//  data = ""
   content = ""; //clear the content value. 
   Serial.println("Initalizing Trasmission.....");
   //  sending i guess
-  if(client.connect(server, 80)) {
-    client.println("POST /test/data.php HTTP/1.1");
-    Serial.println("POST /test/data.php HTTP/1.1");
-    client.println("Host: 192.168.1.122");
-    Serial.println("Host: 192.168.1.122");
-    client.println("Content-Type: application/x-www-form-urlencoded");
-    Serial.println("Content-Type: application/x-www-form-urlencoded");
+  if(client.connect(server, 3000)) {
+    client.println("GET /?"+data+" HTTP/1.1");
+    Serial.println("GET /?"+data+" HTTP/1.1");
+    client.println("Host: 192.168.1.10");
+    Serial.println("Host: 192.168.1.10");
+    client.println("Content-Type: ");
+    Serial.println("Content-Type: ");
     client.print("Content-Length: ");
     Serial.print("Content-Length: ");
     client.println(data.length());

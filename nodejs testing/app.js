@@ -4,7 +4,7 @@ const app = express()
 
 app.use(express.json())
 
-app.post('/', (req, res) =>{
+app.get('/', (req, res) =>{
     console.log(req.query)
     res.send(req.query) // displays query string
     // console.log(req.url);
