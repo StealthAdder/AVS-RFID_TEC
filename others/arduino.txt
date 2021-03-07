@@ -1,0 +1,83 @@
+#include <Ethernet.h>
+#include <SPI.h>
+#include <ArduinoJson.h>
+// assign a MAC address for the ethernet controller.
+// fill in your address here:
+byte mac[] = {
+  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
+};
+
+byte ip[] = { 192, 168, 1, 241};
+byte server[] = { 192, 168, 1, 10 };
+byte myDns[] = { 192, 168, 1, 1 };
+
+String data; //variable to be posted.
+EthernetClient client;
+
+void setup() {
+  Serial.begin(9600); // Initialize serial communications with the PC
+  while (!Serial);    // Do nothing if no serial port is opened (added for Arduinos based on ATMEGA32U4)
+  
+  SPI.begin();        // Init SPI bus
+
+  //Ethernet shield validation process.
+  if (  Ethernet.begin(mac) == 0) {
+    Serial.println("Failed to configure Ethernet using DHCP");
+    Serial.print("DHCP Failed");
+      
+    if (Ethernet.hardwareStatus() == EthernetNoHardware) {
+      Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
+    }
+    if (Ethernet.linkStatus() == LinkOFF) {
+      Serial.println("Ethernet cable is not connected.");
+    }
+  } else {
+    Serial.print("DHCP Assigned IP ");
+    Serial.println(Ethernet.localIP());
+  }
+  // give the Ethernet shield a second to initialize:
+  delay(850); //Change it later
+  Serial.println("Ethernet Initalized..");
+  Serial.println("All Systems go...");
+}
+
+void loop() {
+  StaticJsonDocument<200> doc;
+  
+//  JsonObject object = doc.to<JsonObject>();/
+  
+  doc["sensor"] = "gps";
+  doc["time"] = 12352;
+  doc["location"]="new bel road";
+  char package[200];
+  serializeJson(doc, package);
+  Serial.println(package);
+///  serializeJsonPretty(doc, Serial);
+  
+  if(client.connect(server, 3000)) {
+    client.println("POST /api HTTP/1.1");
+    Serial.println("POST /api HTTP/1.1");
+    client.println("Host: 192.168.1.10");
+    Serial.println("Host: 192.168.1.10");
+    client.println("Connection: close\r\nContent-Type: application/json");
+    Serial.println("Connection: close\r\nContent-Type: application/json");
+    client.print("Content-Length: ");
+    Serial.print("Content-Length: ");
+    size_t len = measureJson(doc);
+    client.println(len);
+    Serial.println(len);
+    client.print("\r\n");
+    client.println(package);
+    Serial.println(package);
+    
+  //   closing the conn with server after transmission.
+  if(client.connected()){
+    client.stop();
+//    Serial.println(httpCode);/
+    Serial.println("Disconnected");
+  }
+  Serial.println("Delay in progress"); 
+}
+delay(8000);
+void clear();
+}

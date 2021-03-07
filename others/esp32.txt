@@ -1,0 +1,73 @@
+///Working Version of POST - JSON Raw data via http.post
+#include <ArduinoJson.h>
+#include "WiFi.h";
+#include <HTTPClient.h>
+
+const char* ssid = "AETHER X_";
+const char* password = "LOX2@falcon1912";
+
+void setup() {
+  Serial.begin(115200);
+  
+  delay(10);
+
+  // We start by connecting to a WiFi network
+  Serial.println();
+  Serial.println();
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+      Serial.print(".");
+  }
+
+  Serial.println("");
+  Serial.println("WiFi connected");
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
+}
+
+void loop() {
+  StaticJsonDocument<200> doc;
+  
+  doc["sensor"] = "gps";
+  doc["time"] = "12352";
+  char package[200];
+  serializeJson(doc, package);
+  Serial.println(package);
+///  serializeJsonPretty(doc, Serial);
+ 
+
+  Serial.println("TESTING POST");
+  //Declare an object of class HTTPClient
+  HTTPClient http;
+
+  if (WiFi.status() == WL_CONNECTED) {
+    //Specify request destination
+    http.begin("http://192.168.1.10:3000/api");
+    Serial.println("Connecting to http://192.168.1.10:3000/api");
+    Serial.println("Content-Type: application/json");
+    http.addHeader("Content-Type", "application/json");
+
+    //Send the request
+//  char input[] = "{\"api_key\":\"tPmAT5Ab3j7F9\",\"sensor\":\"BME280\",\"value1\":\"24.25\",\"value2\":\"49.54\",\"value3\":\"1005.14\"}";
+//  int httpCode = http.POST("{\"api_key\":\"tPmAT5Ab3j7F9\",\"sensor\":\"BME280\",\"value1\":\"24.25\",\"value2\":\"49.54\",\"value3\":\"1005.14\"}");
+    int httpCode = http.POST(package);
+
+    //Check the returning code
+    if (httpCode > 0) {
+      //Get the request response payload
+      String payload = http.getString();
+      //Print the response payload
+      Serial.println(payload);
+    }
+    //Close connection
+    http.end();
+    Serial.println(httpCode);
+  }
+  delay(8000);
+  void clear();
+}

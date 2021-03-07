@@ -1,0 +1,22 @@
+{
+  "name": "testapi",
+  "version": "1.0.0",
+  "description": "app for testing and serving api",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "keywords": [
+    "api",
+    "js"
+  ],
+  "author": "StealthAdder",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
