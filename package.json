@@ -1,25 +1,29 @@
 {
   "name": "avs-rfid_tec",
-  "version": "1.0.0",
-  "description": "api for avs-rfid-tech",
-  "main": "index.js",
+  "version": "0.0.2",
+  "description": "AVS Backend Services Testing Branch",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server"
+    "start": "cross-env NODE_ENV=production node app",
+    "dev": "cross-env NODE_ENV=development nodemon app"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/StealthAdder/AVS-RFID_TEC.git"
+  "keywords": [
+    "API",
+    "NodeJS",
+    "ExpressJS",
+    "MongoDB"
+  ],
+  "author": "StealthAdder, DarkSchokolade",
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.7"
   },
-  "author": "suhas.k.shetty and hariharan.parthiban",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/StealthAdder/AVS-RFID_TEC/issues"
-  },
-  "homepage": "https://github.com/StealthAdder/AVS-RFID_TEC#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.11.19"
+    "moment": "^2.29.1",
+    "mongoose": "^5.12.0",
+    "morgan": "^1.10.0"
   }
 }
