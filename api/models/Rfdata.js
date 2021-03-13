@@ -18,7 +18,7 @@ const RfdataSchema = new mongoose.Schema({
         required: true
     },
     eventTime: {
-        type: String,
+        type: Date,
         required: true
     }
 }
