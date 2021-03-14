@@ -1,11 +1,9 @@
-const speedviolationCheck = async (location, arry) => {
+const speedviolationCheck = async (req, arry) => {
+    const speedLimitRef = require('../models/speedLimitRef')
+    const violation = require('../models/violations')
+    var objStartTime = new Date(arry[1])
 
-    var objStartTime = null;
-    var objStopTime  = null;
-
-    objStartTime = new Date(arry[1])
-
-    objStopTime = new Date(arry[0])
+    var objStopTime = new Date(arry[0])
     var timeDifference = (objStopTime.getTime() - objStartTime.getTime());
     var differenceDate = new Date(timeDifference);
     var diffHours = differenceDate.getUTCHours();
@@ -19,21 +17,37 @@ const speedviolationCheck = async (location, arry) => {
     // speed time for the hebbal is 45km/h
     // so the another less then 8 second is a speed violation.
     // Get Speed Limit value by querying in DB. Create a collection with different speed limits set for diff location.
-    const speedLimitRef = require('../models/speedLimitRef')
+    
+    // test
+    console.log(`From the req->${req.body.rf_tag}`)
 
-    const result = await speedLimitRef.findOne({location: location})
+    const result = await speedLimitRef.findOne({location: req.body.location})
     // we have time and distance now calculate the speed
-    const time = diffSeconds
+
+    const time = diffSeconds + (60 * diffMinutes)
     // console.log(diffSeconds)
     const distance = 100
     const speedLimit = result.speedlimit
-    console.log(`SpeedLimti -> ${speedLimit}`)
+    console.log(`SpeedLimit -> ${speedLimit}`)
     // formulae
     const speed = Math.floor((distance/time) * 3.6)
     console.log(`Speed Calculated -> ${speed}Km/h`)
 
     if (speed > speedLimit) {
-        console.log(`Violation Ticket generated`)
+        var date = new Date();
+        const violationEvent = {
+            rf_tag: req.body.rf_tag,
+            location: req.body.location,
+            speedRecorded: speed+'Km/h',
+            eventTime: date
+        }
+        
+        try {
+            const event = await violation.create(violationEvent)
+            console.log(`Violation Ticket generated`)
+        } catch (err) {
+            console.error(err)
+        }
     }
 }
 

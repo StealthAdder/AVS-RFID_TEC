@@ -21,7 +21,6 @@ const RfdataSchema = new mongoose.Schema({
         type: Date,
         required: true
     }
-}
-)
+})
 
 module.exports = mongoose.model('Rfdata', RfdataSchema)
