@@ -1,6 +1,6 @@
 const speedviolationCheck = async (req, arry) => {
     const speedLimitRef = require('../models/speedLimitRef')
-    const violation = require('../models/violations')
+    const speedViolation = require('../models/speedViolation')
     var objStartTime = new Date(arry[1])
 
     var objStopTime = new Date(arry[0])
@@ -43,7 +43,7 @@ const speedviolationCheck = async (req, arry) => {
         }
         
         try {
-            const event = await violation.create(violationEvent)
+            const event = await speedViolation.create(violationEvent)
             console.log(`Violation Ticket generated`)
         } catch (err) {
             console.error(err)

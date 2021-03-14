@@ -13,7 +13,7 @@ router.use(express.urlencoded({extended: false}));
 
 // @desc test route for rfdata
 // @route GET /api/rfdata
-router.get('/rfdata', (req, res)=> {
+router.get('/', (req, res)=> {
     res.status(200)
     res.json({
         message: "Api v0.0.2 Routes Active and Listening"
@@ -22,7 +22,7 @@ router.get('/rfdata', (req, res)=> {
 
 // @desc route for rfdata feed
 // @route POST /api/rfdata
-router.post('/rfdata', async (req, res, done) => {
+router.post('/', async (req, res, done) => {
     var date = new Date();
     // timestamp = new Date(date).toLocaleTimeString()
     // console.log(date)

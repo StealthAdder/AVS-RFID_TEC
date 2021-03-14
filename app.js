@@ -24,7 +24,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 // Routes
-app.use('/api', require('./api/routes/rfdata'))
+app.use('/api/rfdata', require('./api/routes/rfdata'))
+app.use('/api/rftraffic', require('./api/routes/rftraffic'))
 
 const PORT = process.env.PORT || 5000
 const SERVER_IP = process.env.HOST || 'localhost'
