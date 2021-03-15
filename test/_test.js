@@ -48,7 +48,7 @@ describe('Mocha Test v0.0.2 for avs-v0.0.2', ()=>{
         assert(ref1.isNew === false)
     })
 
-    it('trafficviolation service', async () => {
+    it('check trafficviolation service', async () => {
         var date = new Date()
         const trafficEvent = {
             rf_tag: '868C0229',

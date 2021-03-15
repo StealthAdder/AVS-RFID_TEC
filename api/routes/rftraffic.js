@@ -27,7 +27,7 @@ router.post('/', async (req, res, done)=> {
     try {
         let event = await trafficViolation.create(newEvent)
         done(null, event)
-        console.log('Event Recorded')
+        console.log(`Traffic violation recorded for ${req.body.rf_tag}`)
         res.status(201).json({
             message: "Event Recorded",
             createdEntry: event

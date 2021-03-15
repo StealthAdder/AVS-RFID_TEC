@@ -25,8 +25,6 @@ router.get('/', (req, res)=> {
 router.post('/', async (req, res, done) => {
     var date = new Date();
     // timestamp = new Date(date).toLocaleTimeString()
-    // console.log(date)
-    console.log(req)
     const newEvent = {
         rf_tag: req.body.rf_tag,
         location: req.body.location,
