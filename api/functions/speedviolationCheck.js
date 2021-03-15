@@ -10,7 +10,7 @@ const speedviolationCheck = async (req, arry) => {
     var diffMinutes = differenceDate.getUTCMinutes();
     var diffSeconds = differenceDate.getUTCSeconds();
     var readableDifference = diffHours + ':' + diffMinutes + ':' + diffSeconds;
-    console.log(readableDifference)
+    // console.log(readableDifference)
 
     // consider the case
     // distance b/w RFID posts is 100m
@@ -19,7 +19,7 @@ const speedviolationCheck = async (req, arry) => {
     // Get Speed Limit value by querying in DB. Create a collection with different speed limits set for diff location.
     
     // test
-    console.log(`From the req->${req.body.rf_tag}`)
+    // console.log(`From the req->${req.body.rf_tag}`)
 
     const result = await speedLimitRef.findOne({location: req.body.location})
     // we have time and distance now calculate the speed
@@ -28,10 +28,10 @@ const speedviolationCheck = async (req, arry) => {
     // console.log(diffSeconds)
     const distance = 100
     const speedLimit = result.speedlimit
-    console.log(`SpeedLimit -> ${speedLimit}`)
+    // console.log(`SpeedLimit -> ${speedLimit}`)
     // formulae
     const speed = Math.floor((distance/time) * 3.6)
-    console.log(`Speed Calculated -> ${speed}Km/h`)
+    // console.log(`Speed Calculated -> ${speed}Km/h`)
 
     if (speed > speedLimit) {
         var date = new Date();
@@ -44,7 +44,7 @@ const speedviolationCheck = async (req, arry) => {
         
         try {
             const event = await speedViolation.create(violationEvent)
-            console.log(`Violation Ticket generated`)
+            // console.log(`Violation Ticket generated`)
         } catch (err) {
             console.error(err)
         }

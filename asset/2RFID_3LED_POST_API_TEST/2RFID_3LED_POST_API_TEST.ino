@@ -45,7 +45,7 @@ byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xCD
 };
 
-byte server[] = { 192, 168, 1, 122 };
+byte server[] = { 192, 168, 1, 10 };
 byte myDns[] = { 192, 168, 1, 1 };
 
 String data; //variable to be posted.
@@ -186,8 +186,8 @@ void loop() {
   if(client.connect(server, 3000)) {
     client.println("POST /api/rfdata HTTP/1.1");
     Serial.println("POST /api/rfdata HTTP/1.1");
-    client.println("Host: 192.168.1.122:3000");
-    Serial.println("Host: 192.168.1.122:3000");
+    client.println("Host: 192.168.1.10:3000");
+    Serial.println("Host: 192.168.1.10:3000");
     client.println("Connection: close\r\nContent-Type: application/json");
     Serial.println("Connection: close\r\nContent-Type: application/json");
     client.print("Content-Length: ");

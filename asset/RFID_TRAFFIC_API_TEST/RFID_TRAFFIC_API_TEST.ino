@@ -22,10 +22,10 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance.
 // assign a MAC address for the ethernet controller.
 // fill in your address here:
 byte mac[] = {
-  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
+  0xDE, 0xAD, 0xBE, 0xCF, 0xFE, 0xED
 };
 
-byte server[] = { 192, 168, 1, 122 };
+byte server[] = { 192, 168, 1, 10 };
 byte myDns[] = { 192, 168, 1, 1 };
 
 String data; //variable to be posted.
@@ -199,8 +199,8 @@ void rfid() {
   if(client.connect(server, 3000)) {
     client.println("POST /api/rftraffic HTTP/1.1");
     Serial.println("POST /api/rftraffic HTTP/1.1");
-    client.println("Host: 192.168.1.122:3000");
-    Serial.println("Host: 192.168.1.122:3000");
+    client.println("Host: 192.168.1.10:3000");
+    Serial.println("Host: 192.168.1.10:3000");
     client.println("Connection: close\r\nContent-Type: application/json");
     Serial.println("Connection: close\r\nContent-Type: application/json");
     client.print("Content-Length: ");

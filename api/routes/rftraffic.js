@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Rftraffic = require('../models/trafficViolation')
+const trafficViolation = require('../models/trafficViolation')
 
 // JSON Middle
 router.use(express.json())
@@ -25,7 +25,7 @@ router.post('/', async (req, res, done)=> {
         eventTime: date
     }
     try {
-        let event = await Rftraffic.create(newEvent)
+        let event = await trafficViolation.create(newEvent)
         done(null, event)
         console.log('Event Recorded')
         res.status(201).json({

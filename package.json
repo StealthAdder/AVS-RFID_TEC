@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node app",
-    "dev": "cross-env NODE_ENV=development nodemon app"
+    "dev": "cross-env NODE_ENV=development nodemon app",
+    "test": "cross-env NODE_ENV=test mocha --exit",
+    "test-dev": "cross-env NODE_ENV=test mocha --exit && cross-env NODE_ENV=development nodemon app"
   },
   "keywords": [
     "API",
@@ -17,6 +19,7 @@
   "license": "MIT",
   "devDependencies": {
     "cross-env": "^7.0.3",
+    "mocha": "^8.3.2",
     "nodemon": "^2.0.7"
   },
   "dependencies": {

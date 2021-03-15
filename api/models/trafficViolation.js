@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const { customAlphabet } = require('nanoid')
 const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 21)
 
-const trafficViolationSchema = mongoose.Schema({
+const trafficViolationSchema = new mongoose.Schema({
     ticketId: {
         type: String,
         required: true,
