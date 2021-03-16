@@ -1,0 +1,32 @@
+{
+  "name": "avs-rfid_tec",
+  "version": "0.0.2",
+  "description": "AVS Backend Services Testing Branch",
+  "main": "app.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node app",
+    "dev": "cross-env NODE_ENV=development nodemon app",
+    "test": "cross-env NODE_ENV=test mocha --exit",
+    "test-dev": "cross-env NODE_ENV=test mocha --exit && cross-env NODE_ENV=development nodemon app"
+  },
+  "keywords": [
+    "API",
+    "NodeJS",
+    "ExpressJS",
+    "MongoDB"
+  ],
+  "author": "StealthAdder, DarkSchokolade",
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "mocha": "^8.3.2",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.0",
+    "morgan": "^1.10.0",
+    "nanoid": "^3.1.21"
+  }
+}
