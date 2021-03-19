@@ -1,0 +1,29 @@
+{
+  "vehicle": [
+    {
+      "id": 1,
+      "rf_tag": "abc2344",
+      "manufacturer": "Tesla",
+      "model": "Roadster",
+      "yom": "12 Feb 2020",
+      "type": "Electric Car",
+      "chassisNum": "239273hhf"
+    },
+    {
+      "rf_tag": "hari2355",
+      "manufacturer": "HARI INC",
+      "model": "HRI69",
+      "type": "water rover",
+      "id": 2
+    },
+    {
+      "rf_tag": "sha2395",
+      "manufacturer": "Shashank",
+      "model": "big pp",
+      "yom": "today",
+      "type": "cycle",
+      "chassisNum": "420jj",
+      "id": 3
+    }
+  ]
+}

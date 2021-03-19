@@ -8,14 +8,32 @@ import { useState } from "react";
 //     type:Elec,petrol,diesel,cng,
 //     chassis No
 //     }
-const AddManufacturedCar = () => {
+const AddManufacturedCar = ({ onAdd }) => {
     const [rf_tag, setTag] = useState("");
     const [manufacturer, setManufacturer] = useState("");
     const [model, setModel] = useState("");
+    const [yom, setYom] = useState("");
     const [type, setType] = useState("");
+    const [chassisNum, setChassisNum] = useState("");
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        // check if he has entered all the fields
+
+        onAdd({ rf_tag, manufacturer, model, yom, type, chassisNum });
+
+        // clear the form after submitting
+        setTag("");
+        setManufacturer("");
+        setModel("");
+        setYom("");
+        setType("");
+        setChassisNum("");
+    };
 
     return (
-        <form className="add-form">
+        <form className="add-form" onSubmit={onSubmit}>
             <div className="form-control">
                 <label>RFID Tag</label>
                 <input
@@ -44,12 +62,30 @@ const AddManufacturedCar = () => {
                 />
             </div>
             <div className="form-control">
+                <label>Year Of Manufacture</label>
+                <input
+                    type="text"
+                    placeholder="Vehicle Manufacture Date"
+                    value={yom}
+                    onChange={(e) => setYom(e.target.value)}
+                />
+            </div>
+            <div className="form-control">
                 <label>Vehicle Type</label>
                 <input
                     type="text"
                     placeholder="Type of Vehicle"
                     value={type}
                     onChange={(e) => setType(e.target.value)}
+                />
+            </div>
+            <div className="form-control">
+                <label>Chassis Number</label>
+                <input
+                    type="text"
+                    placeholder="Chassis Number"
+                    value={chassisNum}
+                    onChange={(e) => setChassisNum(e.target.value)}
                 />
             </div>
 
