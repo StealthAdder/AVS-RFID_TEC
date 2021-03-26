@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import AddManufacturedCar from './AddManufacturedCar';
+import AddManufacturedCar from '../AddManufacturedCar';
 const Manufacturer_home = () => {
   const addVehicle = async (vehicle) => {
     console.log(vehicle);
