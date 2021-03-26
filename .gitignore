@@ -3,10 +3,9 @@
 # dependencies
 node_modules
 node_modules/
-/api/config/config.env
 /.pnp
 .pnp.js
-
+backend/api/config/config.env
 # testing
 /coverage
 
