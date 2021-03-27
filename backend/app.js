@@ -44,7 +44,7 @@ app.use('/api/rftraffic', require('./api/routes/rftraffic'));
 // Manufacturer SSO Routes
 app.use(
   '/manufacturer_sso',
-  require('./core/routes/manufacturer_sso/msAddVehicle')
+  require('./core/routes/manufacturer_sso/msRoutes')
 );
 
 const PORT = process.env.PORT || 5000;

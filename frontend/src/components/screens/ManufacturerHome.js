@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import AddManufacturedVehicle from '../AddManufacturedVehicle';
+import UpdateVehicle from '../UpdateVehicle';
 
 const ManufacturerHome = () => {
   const BackendIp = process.env.REACT_APP_BACKEND_IP;
-  const addVehicle = async (vehicle) => {
-    // console.log(vehicle);
 
+  // API Interactions -> addVehicle for first time
+  const addVehicle = async (vehicle) => {
     const res = await fetch(`${BackendIp}/manufacturer_sso/newVehicle`, {
       method: 'POST',
       headers: {
@@ -18,6 +19,21 @@ const ManufacturerHome = () => {
     console.log(data);
   };
 
+  // Fetch POST to get user information.
+  const searchTag = async (tag) => {
+    const res = await fetch(`${BackendIp}/manufacturer_sso/searchTag`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(tag),
+    });
+    // Result of search for vehicle.
+    const data = await res.json();
+    console.log(data);
+  };
+
+  // useState
   const [showAdd, setShowAdd] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);
   return (
@@ -25,17 +41,27 @@ const ManufacturerHome = () => {
       <nav className='manuf-dash'>
         <p
           className='avs manuf-dash-title'
-          onClick={() => setShowAdd(!showAdd)}
+          onClick={() => {
+            setShowAdd(!showAdd);
+            setShowUpdate(false);
+          }}
         >
           Add Vehicle
         </p>
 
-        <p href='' className='avs manuf-dash-title'>
+        <p
+          href=''
+          className='avs manuf-dash-title'
+          onClick={() => {
+            setShowUpdate(!showUpdate);
+            setShowAdd(false);
+          }}
+        >
           Update Information
         </p>
       </nav>
       {showAdd && <AddManufacturedVehicle onAdd={addVehicle} />}
-      {/* {showUpdate && <>} */}
+      {showUpdate && <UpdateVehicle onUpdate={searchTag} />}
     </>
   );
 };

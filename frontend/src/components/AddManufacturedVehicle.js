@@ -36,7 +36,7 @@ const AddManufacturedVehicle = ({ onAdd }) => {
 
   return (
     <>
-      <h3 className='amc-title'>Add New Vechile Information</h3>
+      <h3 className='amc-title'>Add New Vehicle Information</h3>
       <div className='amc-div-form'>
         <form className='add-form' onSubmit={onSubmit}>
           <div className='form-control'>
@@ -45,7 +45,7 @@ const AddManufacturedVehicle = ({ onAdd }) => {
               type='text'
               placeholder='RFID Tag Number'
               value={rf_tag}
-              onChange={(e) => setTag(e.target.value)}
+              onChange={(e) => setTag(e.target.value.toUpperCase())}
             />
           </div>
           <div className='form-control'>
@@ -54,7 +54,7 @@ const AddManufacturedVehicle = ({ onAdd }) => {
               type='text'
               placeholder='Manufacturer name'
               value={manufacturer}
-              onChange={(e) => setManufacturer(e.target.value)}
+              onChange={(e) => setManufacturer(e.target.value.toUpperCase())}
             />
           </div>
           <div className='form-control'>
@@ -63,7 +63,7 @@ const AddManufacturedVehicle = ({ onAdd }) => {
               type='text'
               placeholder='Vehicle Model'
               value={model}
-              onChange={(e) => setModel(e.target.value)}
+              onChange={(e) => setModel(e.target.value.toUpperCase())}
             />
           </div>
           <div className='form-control'>
@@ -72,7 +72,7 @@ const AddManufacturedVehicle = ({ onAdd }) => {
               type='text'
               placeholder='Vehicle Manufacture Date'
               value={yom}
-              onChange={(e) => setYom(e.target.value)}
+              onChange={(e) => setYom(e.target.value.toUpperCase())}
             />
           </div>
           <div className='form-control'>
@@ -81,7 +81,7 @@ const AddManufacturedVehicle = ({ onAdd }) => {
               type='text'
               placeholder='Type of Vehicle'
               value={type}
-              onChange={(e) => setType(e.target.value)}
+              onChange={(e) => setType(e.target.value.toUpperCase())}
             />
           </div>
           <div className='form-control'>
@@ -90,7 +90,7 @@ const AddManufacturedVehicle = ({ onAdd }) => {
               type='text'
               placeholder='Engine Number'
               value={engineNum}
-              onChange={(e) => setEngineNum(e.target.value)}
+              onChange={(e) => setEngineNum(e.target.value.toUpperCase())}
             />
           </div>
           <div className='form-control'>
@@ -99,15 +99,11 @@ const AddManufacturedVehicle = ({ onAdd }) => {
               type='text'
               placeholder='Chassis Number'
               value={chassisNum}
-              onChange={(e) => setChassisNum(e.target.value)}
+              onChange={(e) => setChassisNum(e.target.value.toUpperCase())}
             />
           </div>
 
-          <input
-            type='submit'
-            value='Save Tag with Car'
-            className='btn btn-block'
-          />
+          <input type='submit' value='Save Details' className='btn btn-block' />
         </form>
       </div>
     </>

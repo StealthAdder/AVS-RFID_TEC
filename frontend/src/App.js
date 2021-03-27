@@ -37,15 +37,6 @@ function App() {
             </>
           )}
         />
-        {/* <Route
-          path='/manufacturer_console'
-          exact
-          render={(props) => (
-            <>
-              <AddManufacturedCar onAdd={addVehicle} />
-            </>
-          )}
-        /> */}
       </div>
     </Router>
   );

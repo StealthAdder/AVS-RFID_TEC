@@ -33,6 +33,10 @@ const vehicleDataSchema = new mongoose.Schema({
     type: String,
     default: 'UNREGISTERED',
   },
+  phone: {
+    type: String,
+    default: 'UNREGISTERED',
+  },
   address: {
     type: String,
     default: 'UNREGISTERED',

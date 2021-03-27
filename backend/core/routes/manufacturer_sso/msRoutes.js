@@ -4,6 +4,7 @@ const vehicleData = require('../../models/vehicleData');
 
 // service
 const addvehiclesvs = require('../../services/manufacturer_svs/addvehiclesvs');
+const searchvehiclesvs = require('../../services/manufacturer_svs/searchvehiclesvs');
 
 router.post('/newVehicle', (req, res) => {
   const data = req.body;
@@ -13,5 +14,7 @@ router.post('/newVehicle', (req, res) => {
     created: data,
   });
 });
+
+router.post('/searchTag', searchvehiclesvs(), (req, res, next) => {});
 
 module.exports = router;
