@@ -1,19 +1,22 @@
 import { useState } from 'react';
 import AddManufacturedCar from '../AddManufacturedCar';
-const Manufacturer_home = () => {
+
+const ManufacturerHome = () => {
+  const BackendIp = process.env.REACT_APP_BACKEND_IP;
+  console.log(BackendIp);
   const addVehicle = async (vehicle) => {
     console.log(vehicle);
 
-    // const res = await fetch(`http://localhost:5000/vehicle`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-type': 'application/json',
-    //   },
-    //   body: JSON.stringify(vehicle),
-    // });
-
+    const res = await fetch(`${BackendIp}/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(vehicle),
+    });
     // To display registered cars
-    // const data = await res.json();
+    const data = await res.json();
+    console.log(data);
   };
 
   const [showAdd, setshowAdd] = useState(false);
@@ -37,4 +40,4 @@ const Manufacturer_home = () => {
   );
 };
 
-export default Manufacturer_home;
+export default ManufacturerHome;

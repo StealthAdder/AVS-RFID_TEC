@@ -6,6 +6,7 @@ node_modules/
 /.pnp
 .pnp.js
 backend/api/config/config.env
+frontend/.env
 # testing
 /coverage
 
