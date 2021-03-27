@@ -6,22 +6,23 @@ import { useState } from 'react';
 //     model,
 //     yr of manufactue,
 //     type:Elec,petrol,diesel,cng,
+//     engine No
 //     chassis No
 //     }
-const AddManufacturedCar = ({ onAdd }) => {
+const AddManufacturedVehicle = ({ onAdd }) => {
   const [rf_tag, setTag] = useState('');
   const [manufacturer, setManufacturer] = useState('');
   const [model, setModel] = useState('');
   const [yom, setYom] = useState('');
   const [type, setType] = useState('');
   const [chassisNum, setChassisNum] = useState('');
-
+  const [engineNum, setEngineNum] = useState('');
   const onSubmit = (e) => {
     e.preventDefault();
 
     // check if he has entered all the fields
 
-    onAdd({ rf_tag, manufacturer, model, yom, type, chassisNum });
+    onAdd({ rf_tag, manufacturer, model, yom, type, engineNum, chassisNum });
 
     // clear the form after submitting
     setTag('');
@@ -29,6 +30,7 @@ const AddManufacturedCar = ({ onAdd }) => {
     setModel('');
     setYom('');
     setType('');
+    setEngineNum('');
     setChassisNum('');
   };
 
@@ -83,6 +85,15 @@ const AddManufacturedCar = ({ onAdd }) => {
             />
           </div>
           <div className='form-control'>
+            <label>Engine Number</label>
+            <input
+              type='text'
+              placeholder='Engine Number'
+              value={engineNum}
+              onChange={(e) => setEngineNum(e.target.value)}
+            />
+          </div>
+          <div className='form-control'>
             <label>Chassis Number</label>
             <input
               type='text'
@@ -103,4 +114,4 @@ const AddManufacturedCar = ({ onAdd }) => {
   );
 };
 
-export default AddManufacturedCar;
+export default AddManufacturedVehicle;

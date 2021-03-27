@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import AddManufacturedCar from '../AddManufacturedCar';
+import AddManufacturedVehicle from '../AddManufacturedVehicle';
 
 const ManufacturerHome = () => {
   const BackendIp = process.env.REACT_APP_BACKEND_IP;
-  console.log(BackendIp);
   const addVehicle = async (vehicle) => {
-    console.log(vehicle);
+    // console.log(vehicle);
 
-    const res = await fetch(`${BackendIp}/`, {
+    const res = await fetch(`${BackendIp}/manufacturer_sso/newVehicle`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -19,14 +18,14 @@ const ManufacturerHome = () => {
     console.log(data);
   };
 
-  const [showAdd, setshowAdd] = useState(false);
-
+  const [showAdd, setShowAdd] = useState(false);
+  const [showUpdate, setShowUpdate] = useState(false);
   return (
     <>
       <nav className='manuf-dash'>
         <p
           className='avs manuf-dash-title'
-          onClick={() => setshowAdd(!showAdd)}
+          onClick={() => setShowAdd(!showAdd)}
         >
           Add Vehicle
         </p>
@@ -35,7 +34,8 @@ const ManufacturerHome = () => {
           Update Information
         </p>
       </nav>
-      {showAdd && <AddManufacturedCar onAdd={addVehicle} />}
+      {showAdd && <AddManufacturedVehicle onAdd={addVehicle} />}
+      {/* {showUpdate && <>} */}
     </>
   );
 };
