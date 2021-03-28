@@ -46,6 +46,7 @@ const AddManufacturedVehicle = ({ onAdd }) => {
               placeholder='RFID Tag Number'
               value={rf_tag}
               onChange={(e) => setTag(e.target.value.toUpperCase())}
+              required
             />
           </div>
           <div className='form-control'>
@@ -55,6 +56,7 @@ const AddManufacturedVehicle = ({ onAdd }) => {
               placeholder='Manufacturer name'
               value={manufacturer}
               onChange={(e) => setManufacturer(e.target.value.toUpperCase())}
+              required
             />
           </div>
           <div className='form-control'>
@@ -64,6 +66,7 @@ const AddManufacturedVehicle = ({ onAdd }) => {
               placeholder='Vehicle Model'
               value={model}
               onChange={(e) => setModel(e.target.value.toUpperCase())}
+              required
             />
           </div>
           <div className='form-control'>
@@ -73,6 +76,7 @@ const AddManufacturedVehicle = ({ onAdd }) => {
               placeholder='Vehicle Manufacture Date'
               value={yom}
               onChange={(e) => setYom(e.target.value.toUpperCase())}
+              required
             />
           </div>
           <div className='form-control'>
@@ -82,6 +86,7 @@ const AddManufacturedVehicle = ({ onAdd }) => {
               placeholder='Type of Vehicle'
               value={type}
               onChange={(e) => setType(e.target.value.toUpperCase())}
+              required
             />
           </div>
           <div className='form-control'>
@@ -91,6 +96,7 @@ const AddManufacturedVehicle = ({ onAdd }) => {
               placeholder='Engine Number'
               value={engineNum}
               onChange={(e) => setEngineNum(e.target.value.toUpperCase())}
+              required
             />
           </div>
           <div className='form-control'>
@@ -100,6 +106,7 @@ const AddManufacturedVehicle = ({ onAdd }) => {
               placeholder='Chassis Number'
               value={chassisNum}
               onChange={(e) => setChassisNum(e.target.value.toUpperCase())}
+              required
             />
           </div>
 

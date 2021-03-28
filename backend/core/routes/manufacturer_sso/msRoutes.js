@@ -6,15 +6,8 @@ const vehicleData = require('../../models/vehicleData');
 const addvehiclesvs = require('../../services/manufacturer_svs/addvehiclesvs');
 const searchvehiclesvs = require('../../services/manufacturer_svs/searchvehiclesvs');
 
-router.post('/newVehicle', (req, res) => {
-  const data = req.body;
-  addvehiclesvs(data);
-  res.status(201).json({
-    message: 'Request Processed',
-    created: data,
-  });
-});
+router.post('/newVehicle', addvehiclesvs());
 
-router.post('/searchTag', searchvehiclesvs(), (req, res, next) => {});
+router.post('/searchTag', searchvehiclesvs());
 
 module.exports = router;

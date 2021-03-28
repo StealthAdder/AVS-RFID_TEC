@@ -4,7 +4,6 @@ import UpdateVehicle from '../UpdateVehicle';
 
 const ManufacturerHome = () => {
   const BackendIp = process.env.REACT_APP_BACKEND_IP;
-
   // API Interactions -> addVehicle for first time
   const addVehicle = async (vehicle) => {
     const res = await fetch(`${BackendIp}/manufacturer_sso/newVehicle`, {
@@ -15,20 +14,6 @@ const ManufacturerHome = () => {
       body: JSON.stringify(vehicle),
     });
     // To display registered cars
-    const data = await res.json();
-    console.log(data);
-  };
-
-  // Fetch POST to get user information.
-  const searchTag = async (tag) => {
-    const res = await fetch(`${BackendIp}/manufacturer_sso/searchTag`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(tag),
-    });
-    // Result of search for vehicle.
     const data = await res.json();
     console.log(data);
   };
@@ -61,7 +46,7 @@ const ManufacturerHome = () => {
         </p>
       </nav>
       {showAdd && <AddManufacturedVehicle onAdd={addVehicle} />}
-      {showUpdate && <UpdateVehicle onUpdate={searchTag} />}
+      {showUpdate && <UpdateVehicle />}
     </>
   );
 };

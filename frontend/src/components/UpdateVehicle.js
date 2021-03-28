@@ -1,33 +1,28 @@
 import { useState } from 'react';
+import SearchVehicle from './SearchVehicle';
 
-const UpdateVehicle = ({ onUpdate }) => {
-  let [rf_tag, setTag] = useState('');
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-
-    // check if he has entered all the fields
-    onUpdate({ rf_tag });
-    setTag('');
+const UpdateVehicle = () => {
+  const BackendIp = process.env.REACT_APP_BACKEND_IP;
+  // Fetch POST to get user information.
+  const searchTag = async (tag) => {
+    const res = await fetch(`${BackendIp}/manufacturer_sso/searchTag`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(tag),
+    });
+    // Result of search for vehicle.
+    const data = await res.json();
+    // console.log(data);
+    setResult = data;
+    console.log(setResult);
   };
+  let [result, setResult] = useState('');
   return (
     <>
       <h3 className='amc-title'>Register Vehicle</h3>
-      <div className='amc-div-form'>
-        <form className='add-form' onSubmit={onSubmit}>
-          <div className='form-control'>
-            <label>RFID Tag</label>
-            <input
-              type='text'
-              placeholder='RFID Tag Number'
-              value={rf_tag}
-              onChange={(event) => setTag(event.target.value.toUpperCase())}
-            />
-          </div>
-
-          <input type='submit' value='Search Tag' className='btn btn-block' />
-        </form>
-      </div>
+      <SearchVehicle onSearch={searchTag} />
     </>
   );
 };

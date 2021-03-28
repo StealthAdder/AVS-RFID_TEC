@@ -9,10 +9,10 @@ const searchvehiclesvs = () => {
       });
     } else {
       res.status(200).json({
-        RF_TAG: 'Found',
         searchResult: searchResult,
       });
     }
+    next();
   };
 };
 
