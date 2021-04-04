@@ -15,6 +15,9 @@ const vehicleDataSchema = new mongoose.Schema({
   yom: {
     type: String,
   },
+  engineType: {
+    type: String,
+  },
   engineNumber: {
     type: String,
   },

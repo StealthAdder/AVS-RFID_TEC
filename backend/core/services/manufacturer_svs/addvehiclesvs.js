@@ -6,6 +6,7 @@ const addvehiclesvs = () => {
       rf_tag: data.rf_tag,
       manufacturer: data.manufacturer,
       vehicleModel: data.model,
+      engineType: data.type,
       yom: data.yom,
       engineNumber: data.engineNum,
       chassisNumber: data.chassisNum,
