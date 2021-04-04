@@ -8,9 +8,11 @@ const searchvehiclesvs = () => {
         err: 'Not Found! X_X',
       });
     } else {
-      res.status(200).json({
-        searchResult: searchResult,
-      });
+      res.status(200).json([
+        {
+          searchResult: searchResult,
+        },
+      ]);
     }
     next();
   };

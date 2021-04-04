@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import UpdateTable from './UpdateTable';
-const SearchVehicle = () => {
+// import UpdateTable from './UpdateTable';
+const SearchVehicle = ({ result }) => {
   const BackendIp = process.env.REACT_APP_BACKEND_IP;
   // Fetch POST to get user information.
 
-  const [results, setResults] = useState([]);
+  // const [results, setResults] = useState([]);
   const getSearchedTag = async (tag) => {
     const res = await fetch(`${BackendIp}/manufacturer_sso/searchTag`, {
       method: 'POST',
@@ -16,7 +16,7 @@ const SearchVehicle = () => {
     // Result of search for vehicle.
     const data = await res.json();
     console.log(data);
-    setResults(data);
+    result(data);
   };
   const onSubmit = (event) => {
     event.preventDefault();
@@ -42,7 +42,7 @@ const SearchVehicle = () => {
 
         <input type='submit' value='Search Tag' className='btn btn-block' />
       </form>
-      <UpdateTable />
+      {/* <UpdateTable /> */}
     </div>
   );
 };

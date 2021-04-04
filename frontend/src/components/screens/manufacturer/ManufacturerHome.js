@@ -1,23 +1,8 @@
 import { useState } from 'react';
-import AddManufacturedVehicle from '../AddManufacturedVehicle';
-import UpdateVehicle from '../UpdateVehicle';
+import AddManufacturedVehicle from './components/AddManufacturedVehicle';
+import UpdateInformation from './components/UpdateInformation';
 
 const ManufacturerHome = () => {
-  const BackendIp = process.env.REACT_APP_BACKEND_IP;
-  // API Interactions -> addVehicle for first time
-  const addVehicle = async (vehicle) => {
-    const res = await fetch(`${BackendIp}/manufacturer_sso/newVehicle`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(vehicle),
-    });
-    // To display registered cars
-    const data = await res.json();
-    console.log(data);
-  };
-
   // useState
   const [showAdd, setShowAdd] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);
@@ -45,8 +30,8 @@ const ManufacturerHome = () => {
           Update Information
         </p>
       </nav>
-      {showAdd && <AddManufacturedVehicle onAdd={addVehicle} />}
-      {showUpdate && <UpdateVehicle />}
+      {showAdd && <AddManufacturedVehicle />}
+      {showUpdate && <UpdateInformation />}
     </>
   );
 };

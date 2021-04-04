@@ -9,7 +9,7 @@ import { useState } from 'react';
 //     engine No
 //     chassis No
 //     }
-const AddManufacturedVehicle = ({ onAdd }) => {
+const AddManufacturedVehicle = () => {
   const [rf_tag, setTag] = useState('');
   const [manufacturer, setManufacturer] = useState('');
   const [model, setModel] = useState('');
@@ -17,12 +17,36 @@ const AddManufacturedVehicle = ({ onAdd }) => {
   const [type, setType] = useState('');
   const [chassisNum, setChassisNum] = useState('');
   const [engineNum, setEngineNum] = useState('');
+
   const onSubmit = (e) => {
+    const BackendIp = process.env.REACT_APP_BACKEND_IP;
+
     e.preventDefault();
+    // API Interactions -> addVehicle for first time
+    const addVehicle = async (vehicle) => {
+      const res = await fetch(`${BackendIp}/manufacturer_sso/newVehicle`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(vehicle),
+      });
+      // To display registered cars
+      const data = await res.json();
+      console.log(data);
+    };
 
     // check if he has entered all the fields
 
-    onAdd({ rf_tag, manufacturer, model, yom, type, engineNum, chassisNum });
+    addVehicle({
+      rf_tag,
+      manufacturer,
+      model,
+      yom,
+      type,
+      engineNum,
+      chassisNum,
+    });
 
     // clear the form after submitting
     setTag('');
