@@ -8,7 +8,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  height: 100%;
+  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
 }
 
 .container {
@@ -117,9 +117,10 @@ body {
 
 .img-checkmark {
   margin: 10px;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
+  border-radius: 50%;
 }
 
 .task {

@@ -12,6 +12,7 @@ const updateinfosvs = () => {
       console.error(error);
       res.send(error);
     }
+    next();
   };
 };
 
