@@ -1,15 +1,14 @@
-import { Link } from "react-router-dom";
-import Button from "./Button";
+// import { Link } from 'react-router-dom';
+// import Button from './Button';
 
 const Header = () => {
-    return (
-        <header className="header">
-            {/* <h1>Manufacturer Console</h1> */}
-            <Button text="Add" />
-            <Link to="/manufacturer_console">Manufacturer Console</Link>
-            <Link to="/register_driver">Driver Registration</Link>
-        </header>
-    );
+  return (
+    <header className='header'>
+      <p className='avs-icon avs'>icon</p>
+      <p className='avs-title avs'>AVS-RFID_TEC</p>
+      <p className='login-icon avs'>login-icon</p>
+    </header>
+  );
 };
 
 export default Header;

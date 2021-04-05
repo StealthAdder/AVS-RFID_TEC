@@ -70,7 +70,6 @@ void setup(){
     Serial.println(Ethernet.localIP());
   }
   // give the Ethernet shield a second to initialize:
-  delay(850); //Change it later
     Serial.println("AVS-RFID_TEC IoT: Ethernet Initalized..");
     Serial.println("AVS-RFID_TEC IoT: Powering up...");
   for(int i=0; i<=2; i++){
@@ -89,7 +88,6 @@ void setup(){
     delay(shortdelay);
     digitalWrite(redled, LOW);
   }
-//  delay(500);
   Serial.println("AVS-RFID_TEC IoT: Startup was Nominal..");
   // give the Ethernet shield a second to initialize:
 }
@@ -196,11 +194,11 @@ void rfid() {
   Serial.println("AVS-RFID_TEC IoT: Initalizing Trasmission.....");
 
 //client.print is the actual function doing transmission, we use serial.print to show the output on serial monitor for debugging.
-  if(client.connect(server, 3000)) {
+  if(client.connect(server, 5000)) {
     client.println("POST /api/rftraffic HTTP/1.1");
     Serial.println("POST /api/rftraffic HTTP/1.1");
-    client.println("Host: 192.168.1.10:3000");
-    Serial.println("Host: 192.168.1.10:3000");
+    client.println("Host: 192.168.1.122:5000");
+    Serial.println("Host: 192.168.1.122:5000");
     client.println("Connection: close\r\nContent-Type: application/json");
     Serial.println("Connection: close\r\nContent-Type: application/json");
     client.print("Content-Length: ");
