@@ -74,11 +74,12 @@ body {
   margin: auto;
 }
 .form-control {
-  margin: 10px 0px;
+  /* to spread them over */
+  margin: 10px 10px;
+  display: inline-block;
 }
 
 .btn {
-  display: inline-block;
   background: #000;
   color: #fff;
   border: none;
@@ -100,8 +101,25 @@ body {
 }
 
 .btn-block {
+  display: inline;
+  width: auto;
+  height: auto;
+}
+
+.amc-btn-div {
+  margin-bottom: 10px;
+}
+
+.success-div-center {
   display: block;
-  width: 100%;
+  text-align: center;
+}
+
+.img-checkmark {
+  margin: 10px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
 }
 
 .task {

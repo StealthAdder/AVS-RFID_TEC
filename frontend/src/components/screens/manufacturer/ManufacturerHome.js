@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import AddManufacturedVehicle from './components/AddManufacturedVehicle';
 import UpdateInformation from './components/UpdateInformation';
-
+import Success from './components/Success';
 const ManufacturerHome = () => {
   // useState
   const [showAdd, setShowAdd] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   return (
     <>
       <nav className='manuf-dash'>
@@ -14,6 +15,7 @@ const ManufacturerHome = () => {
           onClick={() => {
             setShowAdd(!showAdd);
             setShowUpdate(false);
+            setShowSuccess(false);
           }}
         >
           Add Vehicle
@@ -25,13 +27,19 @@ const ManufacturerHome = () => {
           onClick={() => {
             setShowUpdate(!showUpdate);
             setShowAdd(false);
+            setShowSuccess(false);
           }}
         >
           Update Information
         </p>
       </nav>
-      {showAdd && <AddManufacturedVehicle />}
-      {showUpdate && <UpdateInformation />}
+      {showAdd && (
+        <AddManufacturedVehicle closer={setShowAdd} success={setShowSuccess} />
+      )}
+      {showUpdate && (
+        <UpdateInformation closer={setShowUpdate} success={setShowSuccess} />
+      )}
+      {showSuccess && <Success />}
     </>
   );
 };

@@ -4,9 +4,9 @@
 const Header = () => {
   return (
     <header className='header'>
-      <a className='avs-icon avs'>icon</a>
+      <p className='avs-icon avs'>icon</p>
       <p className='avs-title avs'>AVS-RFID_TEC</p>
-      <a className='login-icon avs'>login-icon</a>
+      <p className='login-icon avs'>login-icon</p>
     </header>
   );
 };

@@ -4,9 +4,7 @@ const searchvehiclesvs = () => {
     const tag = req.body.rf_tag;
     const searchResult = await vehicleData.findOne({ rf_tag: tag });
     if (searchResult === null) {
-      res.status(200).json({
-        err: 'Not Found! X_X',
-      });
+      res.status(404);
     } else {
       res.status(200).json([
         {

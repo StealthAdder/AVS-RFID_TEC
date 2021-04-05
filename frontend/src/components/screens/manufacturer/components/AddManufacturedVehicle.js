@@ -9,7 +9,7 @@ import { useState } from 'react';
 //     engine No
 //     chassis No
 //     }
-const AddManufacturedVehicle = () => {
+const AddManufacturedVehicle = ({ closer, success }) => {
   const [rf_tag, setTag] = useState('');
   const [manufacturer, setManufacturer] = useState('');
   const [model, setModel] = useState('');
@@ -34,6 +34,8 @@ const AddManufacturedVehicle = () => {
       // To display registered cars
       const data = await res.json();
       console.log(data);
+      closer(false);
+      success(true);
     };
 
     // check if he has entered all the fields
@@ -133,8 +135,19 @@ const AddManufacturedVehicle = () => {
               required
             />
           </div>
-
-          <input type='submit' value='Save Details' className='btn btn-block' />
+          <div className='amc-btn-div'>
+            <input
+              type='submit'
+              value='Save Details'
+              className='btn btn-block'
+            />
+            <input
+              type='button'
+              onClick={() => closer(false)}
+              value='Close'
+              className='btn btn-block'
+            />
+          </div>
         </form>
       </div>
     </>
