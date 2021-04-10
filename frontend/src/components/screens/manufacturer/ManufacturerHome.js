@@ -3,6 +3,7 @@ import AddManufacturedVehicle from './components/AddManufacturedVehicle';
 import UpdateInformation from './components/UpdateInformation';
 import Success from './components/Success';
 import CompanyLogin from './components/CompanyLogin';
+import ComapanyLogout from './components/ComapanyLogout';
 const ManufacturerHome = () => {
   // useState
   const [showAdd, setShowAdd] = useState(false);
@@ -43,6 +44,7 @@ const ManufacturerHome = () => {
         >
           Login
         </p>
+        <ComapanyLogout />
       </nav>
       {showAdd && (
         <AddManufacturedVehicle closer={setShowAdd} success={setShowSuccess} />
@@ -51,7 +53,7 @@ const ManufacturerHome = () => {
         <UpdateInformation closer={setShowUpdate} success={setShowSuccess} />
       )}
       {showLogin && <CompanyLogin />}
-      {}
+
       {showSuccess && <Success />}
     </>
   );

@@ -9,12 +9,11 @@ const login = () => {
   return async (req, res) => {
     console.log(req.body);
     const { companyName, password } = req.body;
-    const company = await Company.findOne({ companyName }).lean();
-
-    if (!company) {
-      return res.json({
-        status: 'error',
-        error: 'Invalid company name/password',
+    const company = await Company.findOne({ companyName });
+    console.log(company);
+    if (company === null) {
+      return res.status(401).json({
+        message: 'Access Denied',
       });
     }
 
@@ -26,7 +25,7 @@ const login = () => {
       );
       return res.status(200).json({ data: token });
     }
-    res.json({ status: 'error', error: 'Invalid company name/password' });
+    res.status(401).json({ message: 'Access Denied' });
   };
 };
 

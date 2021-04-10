@@ -7,10 +7,11 @@ const addvehiclesvs = require('../../services/manufacturer_svs/addvehiclesvs');
 const searchvehiclesvs = require('../../services/manufacturer_svs/searchvehiclesvs');
 const updateinfosvs = require('../../services/manufacturer_svs/updateinfosvs');
 const login = require('../../services/manufacturer_svs/login');
+const checkAuth = require('../../middleware/check-auth');
 
 router.post('/login', login());
 
-router.post('/newVehicle', addvehiclesvs());
+router.post('/newVehicle', checkAuth, addvehiclesvs());
 
 router.post('/searchTag', searchvehiclesvs());
 
