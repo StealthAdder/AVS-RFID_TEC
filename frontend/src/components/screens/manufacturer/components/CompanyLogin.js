@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 
-const CompanyLogin = () => {
+const CompanyLogin = ({ closer, compName }) => {
   const [companyName, setCompanyName] = useState('');
   const [password, setPassword] = useState('');
 
@@ -17,8 +17,12 @@ const CompanyLogin = () => {
         password: password,
       });
       if (res.status === 200) {
-        localStorage.setItem('token', res.data.data); // something is not right will check later
+        localStorage.setItem('token', res.data.data); // something is not right will check later 2 data?
+        localStorage.setItem('companyName', res.data.companyName);
+        compName(res.data.companyName);
         console.log('got token', res.data.data);
+        // close the login and move on
+        closer(false);
       } else {
         alert(res.error);
       }

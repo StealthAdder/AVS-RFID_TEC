@@ -13,8 +13,8 @@ router.post('/login', login());
 
 router.post('/newVehicle', checkAuth, addvehiclesvs());
 
-router.post('/searchTag', searchvehiclesvs());
+router.post('/searchTag', checkAuth, searchvehiclesvs());
 
-router.patch('/updateInfo/:id', updateinfosvs());
+router.patch('/updateInfo/:id', checkAuth, updateinfosvs());
 
 module.exports = router;

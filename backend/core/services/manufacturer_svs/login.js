@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const Company = require('../../models/companyModel');
 
 // put this in env if this is leaked everything is fucked
-const JWT_SECRET = 'slkjf48957()>?"{}{ZJKH@#$%^&jhfajkhfd';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const login = () => {
   return async (req, res) => {
@@ -23,7 +23,9 @@ const login = () => {
         { id: company._id, companyName: company.companyName },
         JWT_SECRET
       );
-      return res.status(200).json({ data: token });
+      return res
+        .status(200)
+        .json({ data: token, companyName: company.companyName });
     }
     res.status(401).json({ message: 'Access Denied' });
   };

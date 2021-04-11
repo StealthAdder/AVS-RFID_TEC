@@ -9,42 +9,61 @@ const ManufacturerHome = () => {
   const [showAdd, setShowAdd] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const [showLogin, setShowLogin] = useState('false');
+  const [showLogin, setShowLogin] = useState(false);
+
+  // const [companyName, setCompanyName] = useState('');
+  const [companyName, setCompanyName] = useState(
+    localStorage.getItem('companyName')
+  );
 
   return (
     <>
       <nav className='manuf-dash'>
-        <p
-          className='avs manuf-dash-title'
-          onClick={() => {
-            setShowAdd(!showAdd);
-            setShowUpdate(false);
-            setShowSuccess(false);
-          }}
-        >
-          Add Vehicle
-        </p>
+        {companyName && (
+          <>
+            <p
+              className='avs manuf-dash-title'
+              onClick={() => {
+                setShowAdd(!showAdd);
+                setShowUpdate(false);
+                setShowSuccess(false);
+              }}
+            >
+              Add Vehicle
+            </p>
 
-        <p
-          href=''
-          className='avs manuf-dash-title'
-          onClick={() => {
-            setShowUpdate(!showUpdate);
-            setShowAdd(false);
-            setShowSuccess(false);
-          }}
-        >
-          Update Information
-        </p>
-        <p
-          className='avs manuf-dash-title'
-          onClick={() => {
-            setShowLogin(!showLogin);
-          }}
-        >
-          Login
-        </p>
-        <ComapanyLogout />
+            <p
+              href=''
+              className='avs manuf-dash-title'
+              onClick={() => {
+                setShowUpdate(!showUpdate);
+                setShowAdd(false);
+                setShowSuccess(false);
+              }}
+            >
+              Update Information
+            </p>
+            <p
+              onClick={() => {
+                setShowAdd(false);
+                setShowUpdate(false);
+                setShowSuccess(false);
+              }}
+            >
+              <ComapanyLogout compName={setCompanyName} />
+            </p>
+          </>
+        )}
+        {!companyName && (
+          <p
+            className='avs manuf-dash-title'
+            onClick={() => {
+              setShowLogin(!showLogin);
+            }}
+          >
+            Login
+          </p>
+        )}
       </nav>
       {showAdd && (
         <AddManufacturedVehicle closer={setShowAdd} success={setShowSuccess} />
@@ -52,7 +71,9 @@ const ManufacturerHome = () => {
       {showUpdate && (
         <UpdateInformation closer={setShowUpdate} success={setShowSuccess} />
       )}
-      {showLogin && <CompanyLogin />}
+      {showLogin && (
+        <CompanyLogin closer={setShowLogin} compName={setCompanyName} />
+      )}
 
       {showSuccess && <Success />}
     </>
