@@ -20,6 +20,14 @@ const trafficViolationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  regdOwner: {
+    type: String,
+    required: true,
+  },
+  vehicleModel: {
+    type: String,
+    required: true,
+  },
   location: {
     type: String,
     required: true,

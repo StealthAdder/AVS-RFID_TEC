@@ -1,6 +1,7 @@
 const addvehiclesvs = () => {
   return async (req, res, next) => {
     const data = req.body;
+    console.log(req.body);
     const vehicleData = require('../../models/vehicleData');
     const vehicleInfo = {
       rf_tag: data.rf_tag,
@@ -11,6 +12,7 @@ const addvehiclesvs = () => {
       engineNumber: data.engineNum,
       chassisNumber: data.chassisNum,
     };
+    console.log(vehicleInfo);
     try {
       await vehicleData.create(vehicleInfo);
       res.status(201).json({
