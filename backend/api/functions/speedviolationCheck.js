@@ -1,6 +1,7 @@
 const speedviolationCheck = async (req, arry) => {
   const speedLimitRef = require('../models/speedLimitRef');
   const speedViolation = require('../models/speedViolation');
+  const vehicleData = require('../../core/models/vehicleData');
   var objStartTime = new Date(arry[1]);
 
   var objStopTime = new Date(arry[0]);
@@ -34,19 +35,27 @@ const speedviolationCheck = async (req, arry) => {
   console.log(`Speed Calculated -> ${speed}Km/h`);
 
   if (speed > speedLimit) {
-    var date = new Date();
-    const violationEvent = {
-      rf_tag: req.body.rf_tag,
-      location: req.body.location,
-      speedRecorded: speed + 'Km/h',
-      eventTime: date,
-    };
-
+    // get vehicle information
     try {
-      const event = await speedViolation.create(violationEvent);
-      console.log(`Violation Ticket generated for ${req.body.rf_tag}`);
-    } catch (err) {
-      console.error(err);
+      const vehicle = await vehicleData.find({ rf_tag: req.body.rf_tag });
+      var date = new Date();
+      const violationEvent = {
+        rf_tag: req.body.rf_tag,
+        regdOwner: vehicle[0].regdOwner,
+        vehicleModel: vehicle[0].manufacturer + ' ' + vehicle[0].vehicleModel,
+        location: req.body.location,
+        zipcode: req.body.zipcode,
+        speedRecorded: speed + 'Km/h',
+        eventTime: date,
+      };
+      try {
+        const event = await speedViolation.create(violationEvent);
+        console.log(`Violation Ticket generated for ${req.body.rf_tag}`);
+      } catch (err) {
+        console.error(err);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 };

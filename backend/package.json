@@ -7,7 +7,8 @@
     "start": "cross-env NODE_ENV=production node app",
     "dev": "cross-env NODE_ENV=development nodemon app",
     "test": "cross-env NODE_ENV=test mocha --exit",
-    "test-dev": "cross-env NODE_ENV=test mocha --exit && cross-env NODE_ENV=development nodemon app"
+    "test-dev": "cross-env NODE_ENV=test mocha --exit && cross-env NODE_ENV=development nodemon app",
+    "data:import": "node ./core/data/seeder.js"
   },
   "keywords": [
     "API",
@@ -23,8 +24,10 @@
     "nodemon": "^2.0.7"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.0",
     "morgan": "^1.10.0",
     "nanoid": "^3.1.21"

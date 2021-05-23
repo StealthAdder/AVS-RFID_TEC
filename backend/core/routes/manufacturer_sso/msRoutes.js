@@ -6,11 +6,15 @@ const vehicleData = require('../../models/vehicleData');
 const addvehiclesvs = require('../../services/manufacturer_svs/addvehiclesvs');
 const searchvehiclesvs = require('../../services/manufacturer_svs/searchvehiclesvs');
 const updateinfosvs = require('../../services/manufacturer_svs/updateinfosvs');
+const login = require('../../services/manufacturer_svs/login');
+const checkAuth = require('../../middleware/check-auth');
 
-router.post('/newVehicle', addvehiclesvs());
+router.post('/login', login());
 
-router.post('/searchTag', searchvehiclesvs());
+router.post('/newVehicle', checkAuth, addvehiclesvs());
 
-router.patch('/updateInfo/:id', updateinfosvs());
+router.post('/searchTag', checkAuth, searchvehiclesvs());
+
+router.patch('/updateInfo/:id', checkAuth, updateinfosvs());
 
 module.exports = router;

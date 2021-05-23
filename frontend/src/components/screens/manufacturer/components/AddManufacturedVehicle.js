@@ -28,6 +28,7 @@ const AddManufacturedVehicle = ({ closer, success }) => {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
         body: JSON.stringify(vehicle),
       });
@@ -106,10 +107,10 @@ const AddManufacturedVehicle = ({ closer, success }) => {
             />
           </div>
           <div className='form-control'>
-            <label>Vehicle Type</label>
+            <label>Engine Type</label>
             <input
               type='text'
-              placeholder='Type of Vehicle'
+              placeholder='Type of Engine'
               value={type}
               onChange={(e) => setType(e.target.value.toUpperCase())}
               required
