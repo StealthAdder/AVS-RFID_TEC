@@ -183,11 +183,11 @@ void loop() {
   content = "";//clear the content value.
 
 //client.print is the actual function doing transmission, we use serial.print to show the output on serial monitor for debugging.
-  if(client.connect(server, 3000)) {
+  if(client.connect(server, 5000)) {
     client.println("POST /api/rfdata HTTP/1.1");
     Serial.println("POST /api/rfdata HTTP/1.1");
-    client.println("Host: 192.168.1.10:3000");
-    Serial.println("Host: 192.168.1.10:3000");
+    client.println("Host: 192.168.1.10:5000");
+    Serial.println("Host: 192.168.1.10:5000");
     client.println("Connection: close\r\nContent-Type: application/json");
     Serial.println("Connection: close\r\nContent-Type: application/json");
     client.print("Content-Length: ");

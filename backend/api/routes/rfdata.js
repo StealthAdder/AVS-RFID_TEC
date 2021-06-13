@@ -23,6 +23,7 @@ router.get('/', (req, res) => {
 // @desc route for rfdata feed
 // @route POST /api/rfdata
 router.post('/', async (req, res, done) => {
+  console.log(req.body);
   var date = new Date();
   // timestamp = new Date(date).toLocaleTimeString()
   const newEvent = {

@@ -44,6 +44,16 @@ const speedViolationSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  fineAmount: {
+    type: Number,
+    required: true,
+  },
+  status: {
+    type: String,
+    default: 'Open',
+    required: true,
+  },
 });
 
-module.exports = mongoose.model('speedViolation', speedViolationSchema);
+const model = mongoose.model('speedViolation', speedViolationSchema);
+module.exports = model;

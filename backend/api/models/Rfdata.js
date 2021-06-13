@@ -23,4 +23,5 @@ const RfdataSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Rfdata', RfdataSchema);
+const model = mongoose.model('Rfdata', RfdataSchema);
+module.exports = model;

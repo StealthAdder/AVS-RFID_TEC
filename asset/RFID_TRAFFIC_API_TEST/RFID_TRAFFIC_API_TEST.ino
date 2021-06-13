@@ -197,8 +197,8 @@ void rfid() {
   if(client.connect(server, 5000)) {
     client.println("POST /api/rftraffic HTTP/1.1");
     Serial.println("POST /api/rftraffic HTTP/1.1");
-    client.println("Host: 192.168.1.122:5000");
-    Serial.println("Host: 192.168.1.122:5000");
+    client.println("Host: 192.168.1.10:5000");
+    Serial.println("Host: 192.168.1.10:5000");
     client.println("Connection: close\r\nContent-Type: application/json");
     Serial.println("Connection: close\r\nContent-Type: application/json");
     client.print("Content-Length: ");

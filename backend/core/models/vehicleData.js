@@ -46,4 +46,5 @@ const vehicleDataSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('vehicleData', vehicleDataSchema);
+const model = mongoose.model('vehicleData', vehicleDataSchema);
+module.exports = model;

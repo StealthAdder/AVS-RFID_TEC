@@ -16,4 +16,5 @@ const speedLimitRefSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('speedLimitRef', speedLimitRefSchema);
+const model = mongoose.model('speedLimitRef', speedLimitRefSchema);
+module.exports = model;

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const trafficViolation = require('../models/trafficViolation');
 const vehicleData = require('../../core/models/vehicleData');
+const fineRef = require('../models/fineRef');
 
 // JSON Middle
 router.use(express.json());
@@ -19,6 +20,9 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res, done) => {
   try {
     const vehicle = await vehicleData.find({ rf_tag: req.body.rf_tag });
+    const fineData = await fineRef.findOne({
+      violationType: 'Traffic Signal Violation',
+    });
     var date = new Date();
     const newEvent = {
       rf_tag: req.body.rf_tag,
@@ -28,6 +32,7 @@ router.post('/', async (req, res, done) => {
       zipcode: req.body.zipcode,
       rfd_id: req.body.rfd_id,
       eventTime: date,
+      fineAmount: fineData.fineAmount,
     };
     try {
       let event = await trafficViolation.create(newEvent);

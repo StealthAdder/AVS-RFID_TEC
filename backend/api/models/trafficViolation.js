@@ -44,6 +44,16 @@ const trafficViolationSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  fineAmount: {
+    type: Number,
+    required: true,
+  },
+  status: {
+    type: String,
+    default: 'Open',
+    required: true,
+  },
 });
 
-module.exports = mongoose.model('trafficViolation', trafficViolationSchema);
+const model = mongoose.model('trafficViolation', trafficViolationSchema);
+module.exports = model;
