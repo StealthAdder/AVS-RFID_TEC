@@ -17,7 +17,8 @@ const ManufacturerHome = () => {
   );
 
   return (
-    <>
+    <main>
+      <h3>Manufacturer Portal</h3>
       <nav className='manuf-dash'>
         {companyName && (
           <>
@@ -76,7 +77,7 @@ const ManufacturerHome = () => {
       )}
 
       {showSuccess && <Success />}
-    </>
+    </main>
   );
 };
 

@@ -8,7 +8,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+  /* background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); */
 }
 
 .container {
@@ -20,15 +20,6 @@ body {
   border-radius: 5px;
 }
 
-.header {
-  display: flex;
-  height: 60px;
-  /* justify-content: space-between; */
-  align-items: center;
-  border: 1px solid steelblue;
-  /* border-radius: 5px; */
-  /* margin-bottom: 20px; */
-}
 .avs {
   padding: 4px 8px;
 }
