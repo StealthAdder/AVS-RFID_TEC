@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const trafficViolation = require('../models/trafficViolation');
 const vehicleData = require('../../core/models/vehicleData');
 const fineRef = require('../models/fineRef');
-
+const moment = require('moment');
 // JSON Middle
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
@@ -19,35 +18,28 @@ router.get('/', (req, res) => {
 // @route POST /api/rftraffic
 router.post('/', async (req, res, done) => {
   try {
-    const vehicle = await vehicleData.find({ rf_tag: req.body.rf_tag });
     const fineData = await fineRef.findOne({
       violationType: 'Traffic Signal Violation',
     });
-    var date = new Date();
-    const newEvent = {
-      rf_tag: req.body.rf_tag,
-      regdOwner: vehicle[0].regdOwner,
-      vehicleModel: vehicle[0].manufacturer + ' ' + vehicle[0].vehicleModel,
-      location: req.body.location,
-      zipcode: req.body.zipcode,
-      rfd_id: req.body.rfd_id,
-      eventTime: date,
-      fineAmount: fineData.fineAmount,
+    var date = moment().format('MMMM Do YYYY, h:mm:ss a');
+    let query = { rf_tag: req.body.rf_tag };
+    let violationEvent = {
+      $push: {
+        violation: {
+          violationType: 'Traffic Signal Violation',
+          location: req.body.location,
+          zipcode: req.body.zipcode,
+          notes: 'Signal Jump was Detected',
+          eventTime: date,
+          fineAmount: fineData.fineAmount,
+        },
+      },
     };
-    try {
-      let event = await trafficViolation.create(newEvent);
-      done(null, event);
-      console.log(`Traffic violation recorded for ${req.body.rf_tag}`);
-      res.status(201).json({
-        message: 'Event Recorded',
-        createdEntry: event,
-      });
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({
-        error: err,
-      });
-    }
+    let options = { new: true };
+    const event = await vehicleData.updateOne(query, violationEvent, options);
+    done(null, event);
+    console.log(`Traffic violation recorded for ${req.body.rf_tag}`);
+    res.sendStatus(201);
   } catch (error) {
     console.log(error);
   }

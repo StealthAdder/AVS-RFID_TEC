@@ -1,8 +1,8 @@
 const speedviolationCheck = async (req, arry) => {
   const speedLimitRef = require('../models/speedLimitRef');
-  const speedViolation = require('../models/speedViolation');
   const vehicleData = require('../../core/models/vehicleData');
   const fineRef = require('../models/fineRef');
+  const moment = require('moment');
   var objStartTime = new Date(arry[1]);
 
   var objStopTime = new Date(arry[0]);
@@ -38,26 +38,36 @@ const speedviolationCheck = async (req, arry) => {
   if (speed > speedLimit) {
     // get vehicle information
     try {
-      const vehicle = await vehicleData.findOne({ rf_tag: req.body.rf_tag });
+      // const vehicle = await vehicleData.findOne({ rf_tag: req.body.rf_tag });
       const fineData = await fineRef.findOne({
         violationType: 'Speeding Violation',
       });
       // console.log(vehicle);
       // console.log(fineData);
-      var date = new Date();
-      const violationEvent = {
-        rf_tag: req.body.rf_tag,
-        regdOwner: vehicle.regdOwner,
-        vehicleModel: vehicle.manufacturer + ' ' + vehicle.vehicleModel,
-        location: req.body.location,
-        zipcode: req.body.zipcode,
-        speedRecorded: speed + 'Km/h',
-        eventTime: date,
-        fineAmount: fineData.fineAmount,
-      };
+
       try {
-        const event = await speedViolation.create(violationEvent);
+        var date = moment().format('MMMM Do YYYY, h:mm:ss a');
+        let query = { rf_tag: req.body.rf_tag };
+        let violationEvent = {
+          $push: {
+            violation: {
+              violationType: 'Speeding Violation',
+              location: req.body.location,
+              zipcode: req.body.zipcode,
+              notes: speed + 'Km/h Speed Recorded',
+              eventTime: date,
+              fineAmount: fineData.fineAmount,
+            },
+          },
+        };
+        let options = { new: true };
+        const event = await vehicleData.updateOne(
+          query,
+          violationEvent,
+          options
+        );
         console.log(`Violation Ticket generated for ${req.body.rf_tag}`);
+        // console.log(event);
       } catch (err) {
         console.error(err);
       }
