@@ -47,6 +47,7 @@ app.use(
   require('./core/routes/manufacturer_sso/msRoutes')
 );
 
+app.use('/userportal_sso', require('./core/routes/userportal_sso/upRoutes'));
 const PORT = process.env.PORT || 5000;
 const SERVER_IP = process.env.HOST || 'localhost';
 
@@ -54,6 +55,7 @@ app.listen(
   PORT,
   SERVER_IP,
   console.log(
-    `Server running in ${process.env.NODE_ENV} mode on port ${PORT} of ${SERVER_IP}`
+    // `Server running in ${process.env.NODE_ENV} mode on port ${PORT} of ${SERVER_IP}`
+    `Server running in ${process.env.NODE_ENV} mode at http://${SERVER_IP}:${PORT}`
   )
 );

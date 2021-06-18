@@ -3,10 +3,27 @@ import { Route, Switch } from 'react-router-dom';
 // import AddManufacturedCar from './components/screens/AddManufacturedCar';
 import MainNavigation from './components/layout/MainNavigation';
 import ManufacturerHome from './components/screens/manufacturer/ManufacturerHome';
-import UserHome from './components/screens/user/UserHome';
-function App() {
+import UserPortal from './components/screens/user/UserPortal';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+
+const App = () => {
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#1E88E5',
+      },
+    },
+    typography: {
+      fontFamily: 'Quicksand',
+      fontWeightLight: 400,
+      fontWeightRegular: 500,
+      fontWeightMedium: 600,
+      fontWeightBold: 700,
+    },
+  });
+
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <MainNavigation />
       <Switch>
         <Route path='/' exact>
@@ -16,11 +33,11 @@ function App() {
           <ManufacturerHome />
         </Route>
         <Route path='/userportal' exact>
-          <UserHome />
+          <UserPortal />
         </Route>
       </Switch>
-    </div>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;

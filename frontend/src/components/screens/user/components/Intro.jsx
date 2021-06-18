@@ -1,8 +1,6 @@
-import Search from './Search';
-const Home = () => {
+const Intro = () => {
   return (
     <div>
-      <Search />
       <h3>Wall of Videos</h3>
       <iframe
         width='560'
@@ -17,4 +15,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Intro;

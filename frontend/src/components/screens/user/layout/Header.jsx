@@ -10,9 +10,6 @@ const Header = () => {
             <Link to='/userportal'>Home</Link>
           </li>
         </ul>
-        <ul>
-          <Link to='/userportal/login'>Login</Link>
-        </ul>
       </nav>
     </header>
   );

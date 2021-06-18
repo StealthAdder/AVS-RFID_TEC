@@ -1,6 +1,7 @@
-const Login = () => {
+const Login = ({ children }) => {
   return (
     <div>
+      {children}
       <h1>Login</h1>
     </div>
   );
