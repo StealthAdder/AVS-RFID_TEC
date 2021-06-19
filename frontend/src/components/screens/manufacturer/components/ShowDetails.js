@@ -10,7 +10,7 @@ const ShowDetails = ({ data, closer, success }) => {
   const [DL, setDL] = useState(data.DL);
   const [RC, setRC] = useState(data.RC);
   const [address, setAddress] = useState(data.address);
-  const [phone, setPhone] = useState(data.phone);
+  const [email, setEmail] = useState(data.email);
   const [regdOwner, setRegdOwner] = useState(data.regdOwner);
 
   const onSubmit = (e) => {
@@ -41,7 +41,7 @@ const ShowDetails = ({ data, closer, success }) => {
       DL,
       RC,
       address,
-      phone,
+      email: email,
       regdOwner,
     });
   };
@@ -163,12 +163,12 @@ const ShowDetails = ({ data, closer, success }) => {
           />
         </div>
         <div className='form-control'>
-          <label>Phone</label>
+          <label>Email</label>
           <input
             type='text'
-            placeholder='Phone No'
-            value={phone}
-            onChange={(e) => setPhone(e.target.value.toUpperCase())}
+            placeholder='Email Id'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className='amc-btn-div'>

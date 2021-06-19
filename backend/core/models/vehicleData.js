@@ -1,14 +1,9 @@
 const mongoose = require('mongoose');
-const { customAlphabet } = require('nanoid');
-const nanoid = customAlphabet(
-  '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-  21
-);
+
 const violationDetailSchema = new mongoose.Schema(
   {
     _id: {
       type: String,
-      default: () => nanoid(),
     },
     violationType: {
       type: String,
@@ -72,7 +67,7 @@ const vehicleDataSchema = new mongoose.Schema({
     type: String,
     default: 'UNREGISTERED',
   },
-  phone: {
+  email: {
     type: String,
     default: 'UNREGISTERED',
   },
