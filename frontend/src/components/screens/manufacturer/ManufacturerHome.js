@@ -4,7 +4,8 @@ import UpdateInformation from './components/UpdateInformation';
 import Success from './components/Success';
 import CompanyLogin from './components/CompanyLogin';
 import ComapanyLogout from './components/ComapanyLogout';
-const ManufacturerHome = () => {
+const ManufacturerHome = ({ pageTitle }) => {
+  pageTitle('MANUFACTURER PORTAL');
   // useState
   const [showAdd, setShowAdd] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);

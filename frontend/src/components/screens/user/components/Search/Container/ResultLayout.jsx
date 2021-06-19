@@ -13,7 +13,8 @@ import {
   Link,
 } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import { SubjectOutlined, AddCircleOutlineOutlined } from '@material-ui/icons';
+import { SubjectOutlined } from '@material-ui/icons';
+import FlagIcon from '@material-ui/icons/Flag';
 const ResultLayout = ({ children, userCompStatus, btCompStatus, theme }) => {
   const drawerWidth = 200;
 
@@ -59,18 +60,16 @@ const ResultLayout = ({ children, userCompStatus, btCompStatus, theme }) => {
   return (
     <div className={classes.root}>
       {/* app bar */}
-      <AppBar position='fixed' className={classes.appBar}>
+      {/* <AppBar position='fixed' className={classes.appBar}>
         <Toolbar>
           <Typography variant='h6' noWrap>
             AVS-RFID TEC
           </Typography>
           <div className={classes.toolbarRight}>
-            <Button variant='h6' noWrap edge='end'>
-              USER-PORTAL
-            </Button>
+            <Button edge='end'>USER-PORTAL</Button>
           </div>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
       <Drawer
         className={classes.drawer}
         variant='permanent'
@@ -101,7 +100,7 @@ const ResultLayout = ({ children, userCompStatus, btCompStatus, theme }) => {
             button
           >
             <ListItemIcon>
-              <SubjectOutlined color='secondary' />
+              <FlagIcon color='secondary' />
             </ListItemIcon>
             <ListItemText primary='Violations' />
           </ListItem>

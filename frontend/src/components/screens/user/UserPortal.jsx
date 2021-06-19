@@ -1,17 +1,39 @@
-import { useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import Home from './components/Home';
-import Layout from './layout/Layout';
-const UserHome = () => {
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Intro from './components/Intro';
+import SearchBar from './components/Search/SearchBar';
+import ResultPage from './components/Search/ResultPage';
+const UserPortal = ({ pageTitle, pageUrl }) => {
+  pageTitle('USER PORTAL');
+  pageUrl('/userportal');
+  const [IntroOpen, setIntroOpen] = useState(true);
+  const [vehicleData, setvehicleData] = useState([]);
+  const [resultPage, setresultPage] = useState(false);
   return (
-    <Layout>
-      <Switch>
-        <Route path='/'>
-          <Home />
-        </Route>
-      </Switch>
-    </Layout>
+    <div>
+      {/* search box */}
+      <Router>
+        <Switch>
+          <Route path='/userportal' exact>
+            {IntroOpen && (
+              <SearchBar
+                getData={setvehicleData}
+                introStatus={setIntroOpen}
+                resultPgStatus={setresultPage}
+              />
+            )}
+            {IntroOpen && <Intro />}
+          </Route>
+          <Route path='/userportal/search'>
+            <h1>Hello</h1>
+            {resultPage && <ResultPage fwd={vehicleData} />}
+          </Route>
+        </Switch>
+      </Router>
+
+      {/* <Test dataFwd={vehicleData} /> */}
+    </div>
   );
 };
 
-export default UserHome;
+export default UserPortal;
