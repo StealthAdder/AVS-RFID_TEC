@@ -69,21 +69,10 @@ const Appbar = ({ children, pageTitle, pageUrl }) => {
               variant='h6'
               edge='end'
               onClick={() => {
-                console.log(`${pageUrl} clicked`);
                 window.location.reload();
               }}
             >
               {pageTitle}
-            </Button>
-            <Button
-              variant='h6'
-              edge='end'
-              onClick={() => {
-                console.log(`${pageUrl} clicked`);
-                history.push('/userportal/search');
-              }}
-            >
-              Search
             </Button>
             {/* <Typography variant='h6' noWrap>
               {pageTitle}

@@ -15,7 +15,18 @@ import {
 import { useHistory } from 'react-router-dom';
 import { SubjectOutlined } from '@material-ui/icons';
 import FlagIcon from '@material-ui/icons/Flag';
-const ResultLayout = ({ children, userCompStatus, btCompStatus, theme }) => {
+import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+const ResultLayout = ({
+  children,
+  userCompStatus,
+  vioCompStatus,
+  theme,
+  introStatus,
+  resultPgStatus,
+  findVehicleState,
+  vDetailState,
+}) => {
   const drawerWidth = 200;
 
   const useStyles = makeStyles((theme) => {
@@ -59,17 +70,6 @@ const ResultLayout = ({ children, userCompStatus, btCompStatus, theme }) => {
   let history = useHistory();
   return (
     <div className={classes.root}>
-      {/* app bar */}
-      {/* <AppBar position='fixed' className={classes.appBar}>
-        <Toolbar>
-          <Typography variant='h6' noWrap>
-            AVS-RFID TEC
-          </Typography>
-          <div className={classes.toolbarRight}>
-            <Button edge='end'>USER-PORTAL</Button>
-          </div>
-        </Toolbar>
-      </AppBar> */}
       <Drawer
         className={classes.drawer}
         variant='permanent'
@@ -79,10 +79,28 @@ const ResultLayout = ({ children, userCompStatus, btCompStatus, theme }) => {
         <Toolbar />
         <List>
           <ListItem
+            key='Home'
+            onClick={() => {
+              console.log('Home');
+              introStatus(true);
+              resultPgStatus(false);
+              vDetailState(false);
+            }}
+            button
+          >
+            <ListItemIcon>
+              <KeyboardArrowLeftIcon color='secondary' />
+            </ListItemIcon>
+            <ListItemText primary='Home' />
+          </ListItem>
+
+          <ListItem
             key='Vehicle Details'
             onClick={() => {
               userCompStatus(true);
-              btCompStatus(false);
+              vioCompStatus(false);
+              findVehicleState(false);
+              vDetailState(false);
             }}
             button
           >
@@ -95,7 +113,9 @@ const ResultLayout = ({ children, userCompStatus, btCompStatus, theme }) => {
             key='Violations'
             onClick={() => {
               userCompStatus(false);
-              btCompStatus(true);
+              vioCompStatus(true);
+              findVehicleState(false);
+              vDetailState(false);
             }}
             button
           >
@@ -103,6 +123,21 @@ const ResultLayout = ({ children, userCompStatus, btCompStatus, theme }) => {
               <FlagIcon color='secondary' />
             </ListItemIcon>
             <ListItemText primary='Violations' />
+          </ListItem>
+          <ListItem
+            key='Find Vehicle'
+            onClick={() => {
+              userCompStatus(false);
+              vioCompStatus(false);
+              findVehicleState(true);
+              vDetailState(false);
+            }}
+            button
+          >
+            <ListItemIcon>
+              <LocationOnIcon color='secondary' />
+            </ListItemIcon>
+            <ListItemText primary='Find Vehicle' />
           </ListItem>
         </List>
       </Drawer>

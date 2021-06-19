@@ -11,27 +11,21 @@ const UserPortal = ({ pageTitle, pageUrl }) => {
   const [resultPage, setresultPage] = useState(false);
   return (
     <div>
-      {/* search box */}
-      <Router>
-        <Switch>
-          <Route path='/userportal' exact>
-            {IntroOpen && (
-              <SearchBar
-                getData={setvehicleData}
-                introStatus={setIntroOpen}
-                resultPgStatus={setresultPage}
-              />
-            )}
-            {IntroOpen && <Intro />}
-          </Route>
-          <Route path='/userportal/search'>
-            <h1>Hello</h1>
-            {resultPage && <ResultPage fwd={vehicleData} />}
-          </Route>
-        </Switch>
-      </Router>
-
-      {/* <Test dataFwd={vehicleData} /> */}
+      {IntroOpen && (
+        <SearchBar
+          getData={setvehicleData}
+          introStatus={setIntroOpen}
+          resultPgStatus={setresultPage}
+        />
+      )}
+      {IntroOpen && <Intro />}
+      {resultPage && (
+        <ResultPage
+          fwd={vehicleData}
+          introStatus={setIntroOpen}
+          resultPgStatus={setresultPage}
+        />
+      )}
     </div>
   );
 };

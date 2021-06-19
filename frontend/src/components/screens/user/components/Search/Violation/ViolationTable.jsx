@@ -6,8 +6,13 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Container, Typography } from '@material-ui/core';
-const BasicTable = ({ MOCK_DATA }) => {
+import { Container, Typography, Button } from '@material-ui/core';
+const ViolationTable = ({
+  MOCK_DATA,
+  vDetailFor,
+  vDetailState,
+  setVioTable,
+}) => {
   const useStyles = makeStyles({
     table: {
       minWidth: 700,
@@ -15,8 +20,8 @@ const BasicTable = ({ MOCK_DATA }) => {
   });
   const violations = MOCK_DATA.searchResult.violation;
   const userData = MOCK_DATA.searchResult;
-  console.log(violations);
-  console.log(userData);
+  // console.log(violations);
+  // console.log(userData);
 
   const classes = useStyles();
   return (
@@ -44,7 +49,15 @@ const BasicTable = ({ MOCK_DATA }) => {
               .map((violation) => (
                 <TableRow key={violation._id}>
                   <TableCell component='th' scope='row'>
-                    {violation._id}
+                    <Button
+                      onClick={() => {
+                        vDetailFor({ violation, userData });
+                        setVioTable(false);
+                        vDetailState(true);
+                      }}
+                    >
+                      {violation._id}
+                    </Button>
                   </TableCell>
                   <TableCell align='right'>{userData.regdOwner}</TableCell>
                   <TableCell align='right'>{userData.rf_tag}</TableCell>
@@ -63,4 +76,4 @@ const BasicTable = ({ MOCK_DATA }) => {
   );
 };
 
-export default BasicTable;
+export default ViolationTable;

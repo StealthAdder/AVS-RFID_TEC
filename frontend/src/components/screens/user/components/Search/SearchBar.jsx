@@ -37,18 +37,24 @@ const SearchBar = ({ getData, introStatus, resultPgStatus }) => {
 
   const BackendIp = process.env.REACT_APP_BACKEND_IP;
   const getSearchedTag = async (rf_tag) => {
-    const res = await fetch(`${BackendIp}/userportal_sso/searchTag`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(rf_tag),
-    });
+    setTitleError(false);
+    try {
+      const res = await fetch(`${BackendIp}/userportal_sso/searchTag`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(rf_tag),
+      });
+      const data = await res.json();
+      getData(data);
+      introStatus(false);
+      resultPgStatus(true);
+    } catch (error) {
+      setTitleError(true);
+    }
+
     // Result of search for vehicle.
-    const data = await res.json();
-    getData(data);
-    introStatus(false);
-    resultPgStatus(true);
   };
 
   function submitHandler(event) {

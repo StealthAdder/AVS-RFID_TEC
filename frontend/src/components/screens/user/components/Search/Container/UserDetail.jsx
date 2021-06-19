@@ -23,7 +23,7 @@ const UserDetail = ({ user }) => {
     },
   });
   const classes = useStyles();
-  console.log(user);
+  // console.log(user);
   const bull = <span className={classes.bullet}>•</span>;
   return (
     <Container maxWidth='md'>
