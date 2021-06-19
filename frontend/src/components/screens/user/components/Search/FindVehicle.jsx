@@ -7,40 +7,44 @@ import {
   CardContent,
   Button,
 } from '@material-ui/core';
+import { useState } from 'react';
+import FVHome from './FindVehicle/FVHome';
+import Verify from './FindVehicle/Verify';
+import EnterOTP from './FindVehicle/EnterOTP';
+import VehicleLocation from './FindVehicle/VehicleLocation';
 const FindVehicle = ({ MOCK_DATA }) => {
-  const useStyles = makeStyles({
-    root: {
-      minWidth: 300,
-    },
-    bullet: {
-      display: 'inline-block',
-      margin: '0 2px',
-      transform: 'scale(0.8)',
-    },
-    title: {
-      fontSize: 16,
-    },
-    pos: {
-      marginBottom: 12,
-    },
-  });
-  const classes = useStyles();
+  // console.log(MOCK_DATA);
+  const [FVHomeState, setFVHomeState] = useState(true);
+  const [VerifyState, setVerifyState] = useState(false);
+  const [EnterOTPState, setEnterOTPState] = useState(false);
+  const [VehicleLocState, setVehicleLocState] = useState(false);
+  const [OTP, setOTP] = useState('');
+  const userData = MOCK_DATA.searchResult;
+  const verifiedEmail = MOCK_DATA.searchResult.email;
+  // console.log(OTP);
   return (
     <Container>
-      <Typography variant='h4'>Find Vehicle</Typography>
-      <Card>
-        <CardContent>
-          <Typography variant='h6'>Verification</Typography>
-          <Typography variant='h7' color='error'>
-            To Prevent Privacy Leaks This Verification Process Is Implemented.
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size='small' variant='contained'>
-            Verify Me
-          </Button>
-        </CardActions>
-      </Card>
+      {FVHomeState && <FVHome setVerifyState={setVerifyState} />}
+      {VerifyState && (
+        <Verify
+          setFVHomeState={setFVHomeState}
+          setVerifyState={setVerifyState}
+          userData={userData}
+          verifiedEmail={verifiedEmail}
+          OTP={setOTP}
+          setEnterOTPState={setEnterOTPState}
+        />
+      )}
+      {EnterOTPState && (
+        <EnterOTP
+          setVerifyState={setVerifyState}
+          setVehicleLocState={setVehicleLocState}
+          OTP={OTP}
+        />
+      )}
+      {VehicleLocState && (
+        <VehicleLocation setEnterOTPState={setEnterOTPState} />
+      )}
     </Container>
   );
 };
