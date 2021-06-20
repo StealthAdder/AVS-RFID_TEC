@@ -19,8 +19,10 @@ const FindVehicle = ({ MOCK_DATA }) => {
   const [EnterOTPState, setEnterOTPState] = useState(false);
   const [VehicleLocState, setVehicleLocState] = useState(false);
   const [OTP, setOTP] = useState('');
+  const [trackData, setTrackData] = useState({});
   const userData = MOCK_DATA.searchResult;
   const verifiedEmail = MOCK_DATA.searchResult.email;
+  const rf_tag = MOCK_DATA.searchResult.rf_tag;
   // console.log(OTP);
   return (
     <Container>
@@ -38,12 +40,18 @@ const FindVehicle = ({ MOCK_DATA }) => {
       {EnterOTPState && (
         <EnterOTP
           setVerifyState={setVerifyState}
-          setVehicleLocState={setVehicleLocState}
           OTP={OTP}
+          rf_tag={rf_tag}
+          setVehicleLocState={setVehicleLocState}
+          setTrackData={setTrackData}
         />
       )}
       {VehicleLocState && (
-        <VehicleLocation setEnterOTPState={setEnterOTPState} />
+        <VehicleLocation
+          setEnterOTPState={setEnterOTPState}
+          userdata={trackData}
+          vehicleData={userData}
+        />
       )}
     </Container>
   );

@@ -9,7 +9,13 @@ import {
   Button,
 } from '@material-ui/core';
 import { useRef, useState } from 'react';
-const EnterOTP = ({ setVerifyState, OTP, setVehicleLocState }) => {
+const EnterOTP = ({
+  setVerifyState,
+  OTP,
+  setVehicleLocState,
+  rf_tag,
+  setTrackData,
+}) => {
   setVerifyState(false);
   const [titleError, setTitleError] = useState(false);
   const emailInputRef = useRef();
@@ -51,6 +57,26 @@ const EnterOTP = ({ setVerifyState, OTP, setVehicleLocState }) => {
     },
   });
 
+  // do the search for vehicle
+  // console.log(rf_tag);
+  const BackendIp = process.env.REACT_APP_BACKEND_IP;
+  const track = async (rf_tag) => {
+    try {
+      const res = await fetch(`${BackendIp}/userportal_sso/track`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(rf_tag),
+      });
+      const data = await res.json();
+      setTrackData(data);
+      setVehicleLocState(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   function submitHandler(event) {
     event.preventDefault();
     const enteredOTP = emailInputRef.current.value;
@@ -60,7 +86,7 @@ const EnterOTP = ({ setVerifyState, OTP, setVehicleLocState }) => {
       if (enteredOTP === OTP.otp) {
         console.log('Verified User');
         console.log(enteredOTP);
-        setVehicleLocState(true);
+        track({ rf_tag });
       } else {
         setTitleError(true);
       }

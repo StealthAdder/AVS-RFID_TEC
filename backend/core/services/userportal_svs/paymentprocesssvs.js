@@ -6,7 +6,7 @@ const paymentprocesssvs = () => {
     console.log(req.body);
     const recipient = req.body.userData.email;
     const userData = req.body.userData;
-    paymentInvoiceMailer(userData, recipient);
+    // paymentInvoiceMailer(userData, recipient);
     res.send({
       payment: 'completed',
     });
