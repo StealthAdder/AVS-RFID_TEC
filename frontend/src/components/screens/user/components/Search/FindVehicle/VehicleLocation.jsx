@@ -56,26 +56,37 @@ const VehicleLocation = ({ setEnterOTPState, userdata, vehicleData }) => {
             gutterBottom
           >{`Event Time: ${time}`}</Typography>
           <Typography variant='h6'>VEHICLE DETAILS:</Typography>
-          <Typography variant='h6' color='primary' className={classes.title}>
-            MODEL: {vehicleData.vehicleModel}
+          <Typography
+            className={classes.title}
+            color='textSecondary'
+            variant='h6'
+          >
+            RC: {vehicleData.RC}
           </Typography>
-          <Typography className={classes.title} variant='h6' color='primary'>
-            MAKER: {`${vehicleData.manufacturer}`}
+          <Typography
+            className={classes.title}
+            color='textSecondary'
+            variant='h6'
+          >
+            DL: {vehicleData.DL}
           </Typography>
           <Typography className={classes.title} color='primary' variant='h6'>
             RF-TAG: {vehicle.rf_tag}
+          </Typography>
+          <Typography variant='h6' color='primary' className={classes.title}>
+            MODEL: {`${vehicleData.vehicleModel} - ${vehicleData.yom}`}
+          </Typography>
+          <Typography className={classes.title} color='primary' variant='h6'>
+            ENGINE TYPE: {vehicleData.engineType}
+          </Typography>
+          <Typography className={classes.title} variant='h6' color='primary'>
+            MAKER: {`${vehicleData.manufacturer}`}
           </Typography>
           <Typography className={classes.title} color='primary' variant='h6'>
             REGD. OWNER: {vehicleData.regdOwner}
           </Typography>
           <Typography className={classes.title} color='primary' variant='h6'>
             REGD. ADDRESS: {vehicleData.address}
-          </Typography>
-          <Typography className={classes.title} color='primary' variant='h6'>
-            REGD. EMAIL: {vehicleData.email}
-          </Typography>
-          <Typography className={classes.title} color='primary' variant='h6'>
-            REGD. EMAIL: {vehicleData.email}
           </Typography>
         </CardContent>
       </Card>

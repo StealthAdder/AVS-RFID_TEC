@@ -1,9 +1,9 @@
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
 dotenv.config({ path: './api/config/config.env' });
-const paymentInvoiceMailer = (userData) => {
+const paymentInvoiceMailer = (userData, ticketId, recipient, receiptId) => {
   // console.log(email);
-  const output = `<p>Hello ${userData.regdOwner},</p><h3>OTP is ${OTP}</h3><p >If this OTP was not requested by You.\nPlease contact notification.avs@gmail.com</p>`;
+  const output = `<p>Hello ${userData.regdOwner},</p><h3>Payment Success!</h3><h4>Ticket ID: ${ticketId} cleared.\nFuture reference please noted this Receipt ID: '${receiptId}'</h4><p >If any issues.\nPlease contact notification.avs@gmail.com</p>`;
 
   const transporter = nodemailer.createTransport({
     host: process.env['MAILER_HOST'],
@@ -21,7 +21,7 @@ const paymentInvoiceMailer = (userData) => {
   let mailOptions = {
     from: process.env['MAILER_FROMTAG'], // sender address
     to: recipient, // list of receivers
-    subject: 'Track Vehicle - Verification', // Subject line
+    subject: `Ticket Id: XXXX${ticketId.substr(ticketId.length - 5)} Paid`, // Subject line
     html: output,
   };
 

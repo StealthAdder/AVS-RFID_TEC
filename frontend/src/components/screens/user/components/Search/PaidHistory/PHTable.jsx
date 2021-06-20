@@ -6,7 +6,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Container, Typography, Button, makeStyles } from '@material-ui/core';
-const PHTable = ({ MOCK_DATA }) => {
+const PHTable = ({ MOCK_DATA, vPHDetailFor, vPHDetailStatus }) => {
   const violations = MOCK_DATA.searchResult.violation;
   const userData = MOCK_DATA.searchResult;
   // PAID PUSHER
@@ -21,7 +21,7 @@ const PHTable = ({ MOCK_DATA }) => {
   // console.log(PAIDS);
   const useStyles = makeStyles({
     table: {
-      minWidth: 700,
+      minWidth: 650,
     },
   });
   const classes = useStyles();
@@ -32,11 +32,12 @@ const PHTable = ({ MOCK_DATA }) => {
         <Table className={classes.table} aria-label='simple table'>
           <TableHead>
             <TableRow>
-              <TableCell>ReceiptId</TableCell>
-              <TableCell>RF_TAG</TableCell>
-              <TableCell>Violation Type</TableCell>
-              <TableCell>Fine Amt.</TableCell>
-              <TableCell>STATUS</TableCell>
+              <TableCell align='left'>Receipt ID</TableCell>
+              <TableCell align='center'>Ticket ID</TableCell>
+              <TableCell align='center'>RF_TAG</TableCell>
+              <TableCell align='center'>Violation Type</TableCell>
+              <TableCell align='center'>Fine Amt.</TableCell>
+              <TableCell align='center'>STATUS</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -47,17 +48,20 @@ const PHTable = ({ MOCK_DATA }) => {
                   <TableCell component='th' scope='row'>
                     <Button
                       onClick={() => {
-                        console.log('receipt clicked');
+                        vPHDetailFor({ paid, userData });
+                        vPHDetailStatus(true);
                       }}
                     >
                       {paid.receiptId}
                     </Button>
                   </TableCell>
-                  <TableCell align='right'>{userData.rf_tag}</TableCell>
-                  {/* <TableCell align='right'>{${userData.manufacturer} ${userData.vehicleModel}}</TableCell> */}
-                  <TableCell align='right'>{paid.violationType}</TableCell>
-                  <TableCell align='right'>{paid.fineAmount}</TableCell>
-                  <TableCell align='right'>{paid.status}</TableCell>
+                  <TableCell align='center'>
+                    XXXX{paid._id.substr(paid._id.length - 5)}
+                  </TableCell>
+                  <TableCell align='center'>{userData.rf_tag}</TableCell>
+                  <TableCell align='center'>{paid.violationType}</TableCell>
+                  <TableCell align='center'>{paid.fineAmount}</TableCell>
+                  <TableCell align='center'>{paid.status}</TableCell>
                 </TableRow>
               ))}
           </TableBody>
