@@ -22,6 +22,15 @@ const ViolationTable = ({
   const userData = MOCK_DATA.searchResult;
   // console.log(violations);
   // console.log(userData);
+  var UNPAIDS = violations.reduce((UNPAIDS, violation) => {
+    if (violation.status === 'UNPAID') {
+      // console.log(violation._id);
+      UNPAIDS.push(violation);
+    }
+    return UNPAIDS;
+  }, []);
+
+  // console.log(UNPAIDS);
 
   const classes = useStyles();
   return (
@@ -43,8 +52,7 @@ const ViolationTable = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {violations
-              .slice(0)
+            {UNPAIDS.slice(0)
               .reverse()
               .map((violation) => (
                 <TableRow key={violation._id}>

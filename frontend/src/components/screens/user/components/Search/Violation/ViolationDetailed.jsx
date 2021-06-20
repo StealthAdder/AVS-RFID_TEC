@@ -13,7 +13,7 @@ import {
   CardContent,
   Button,
 } from '@material-ui/core';
-const ViolationDetailed = ({ violationData }) => {
+const ViolationDetailed = ({ violationData, setVInAppPayState }) => {
   const useStyles = makeStyles({
     root: {
       minWidth: 450,
@@ -48,7 +48,7 @@ const ViolationDetailed = ({ violationData }) => {
           <Typography className={classes.title}>
             {violation.violationType}
           </Typography>
-          <Typography variant='h5' component='h2'>
+          <Typography variant='h5'>
             Ticket ID:
             {
               <Typography
@@ -84,11 +84,6 @@ const ViolationDetailed = ({ violationData }) => {
           <Typography color='textSecondary'>
             {`Fine Amount: ₹${violation.fineAmount}/-`}
           </Typography>
-          <Typography variant='body2' component='p'>
-            well meaning and kindly.
-            <br />
-            {'"a benevolent smile"'}
-          </Typography>
         </CardContent>
         <CardActions>
           <Button
@@ -98,6 +93,7 @@ const ViolationDetailed = ({ violationData }) => {
             color='primary'
             onClick={() => {
               console.log('Paying Now');
+              setVInAppPayState(true);
             }}
           >
             Pay Now

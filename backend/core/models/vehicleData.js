@@ -5,6 +5,10 @@ const violationDetailSchema = new mongoose.Schema(
     _id: {
       type: String,
     },
+    receiptId: {
+      type: String,
+      default: 'UNPAID',
+    },
     violationType: {
       type: String,
     },

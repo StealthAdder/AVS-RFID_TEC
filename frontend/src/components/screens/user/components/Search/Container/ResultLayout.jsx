@@ -16,7 +16,9 @@ import { useHistory } from 'react-router-dom';
 import { SubjectOutlined } from '@material-ui/icons';
 import FlagIcon from '@material-ui/icons/Flag';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 const ResultLayout = ({
   children,
   userCompStatus,
@@ -26,6 +28,8 @@ const ResultLayout = ({
   resultPgStatus,
   findVehicleState,
   vDetailState,
+  setVInAppPayState,
+  setVPaidHistory,
 }) => {
   const drawerWidth = 200;
 
@@ -85,6 +89,8 @@ const ResultLayout = ({
               introStatus(true);
               resultPgStatus(false);
               vDetailState(false);
+              setVInAppPayState(false);
+              setVPaidHistory(false);
             }}
             button
           >
@@ -101,11 +107,13 @@ const ResultLayout = ({
               vioCompStatus(false);
               findVehicleState(false);
               vDetailState(false);
+              setVInAppPayState(false);
+              setVPaidHistory(false);
             }}
             button
           >
             <ListItemIcon>
-              <SubjectOutlined color='secondary' />
+              <AssignmentIndIcon color='secondary' />
             </ListItemIcon>
             <ListItemText primary='Vehicle Details' />
           </ListItem>
@@ -116,6 +124,8 @@ const ResultLayout = ({
               vioCompStatus(true);
               findVehicleState(false);
               vDetailState(false);
+              setVInAppPayState(false);
+              setVPaidHistory(false);
             }}
             button
           >
@@ -125,12 +135,31 @@ const ResultLayout = ({
             <ListItemText primary='Violations' />
           </ListItem>
           <ListItem
+            key='Paid History'
+            onClick={() => {
+              userCompStatus(false);
+              vioCompStatus(false);
+              findVehicleState(false);
+              vDetailState(false);
+              setVInAppPayState(false);
+              setVPaidHistory(true);
+            }}
+            button
+          >
+            <ListItemIcon>
+              <PlaylistAddCheckIcon color='secondary' />
+            </ListItemIcon>
+            <ListItemText primary='Paid History' />
+          </ListItem>
+          <ListItem
             key='Find Vehicle'
             onClick={() => {
               userCompStatus(false);
               vioCompStatus(false);
               findVehicleState(true);
               vDetailState(false);
+              setVInAppPayState(false);
+              setVPaidHistory(false);
             }}
             button
           >
