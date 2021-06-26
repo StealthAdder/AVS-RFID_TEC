@@ -4,6 +4,7 @@ import { useState } from 'react';
 import ManufacturerHome from './components/screens/manufacturer/ManufacturerHome';
 import UserPortal from './components/screens/user/UserPortal';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import AdminPortal from './components/screens/admin/AdminPortal';
 import Appbar from './components/screens/user/layout/Appbar';
 
 const App = () => {
@@ -35,6 +36,9 @@ const App = () => {
         </Route>
         <Route path='/userportal' exact>
           <UserPortal pageTitle={setPageName} pageUrl={setPageRoute} />
+        </Route>
+        <Route path='/admin' exact>
+          <AdminPortal pageTitle={setPageName} pageUrl={setPageRoute} />
         </Route>
       </Appbar>
     </ThemeProvider>
