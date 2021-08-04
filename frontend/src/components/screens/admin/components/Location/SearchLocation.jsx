@@ -54,9 +54,12 @@ const SearchLocation = ({
       });
       const data = await res.json();
       // console.log(data);
-      setSearchLocation(false);
-      setUpdateLocation(true);
-      setResult(data.result);
+      if (data.result != 'Not found') {
+        setSearchLocation(false);
+        setUpdateLocation(true);
+        setResult(data.result);
+      }
+
       if (data.result === 'Not found') {
         setTitleError(true);
       }

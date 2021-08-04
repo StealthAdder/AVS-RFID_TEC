@@ -9,7 +9,6 @@ import {
 import SearchIcon from '@material-ui/icons/Search';
 
 const UpdateLocation = ({ setBtns, result }) => {
-  // setBtns(false);
   console.log(result);
   const useStyles = makeStyles({
     btn: {
@@ -36,7 +35,7 @@ const UpdateLocation = ({ setBtns, result }) => {
   const [searchLocation, setSearchLocation] = useState(true);
   const [addlocationbtn, setAddLocationBtn] = useState(true);
 
-  const titleInputRef = useRef();
+  const locationInputRef = useRef();
 
   // POST FETCH
   const BackendIp = process.env.REACT_APP_BACKEND_IP;
@@ -65,18 +64,17 @@ const UpdateLocation = ({ setBtns, result }) => {
   // Submit Handler
   function submitHandler(event) {
     event.preventDefault();
-    const location = titleInputRef.current.value.toUpperCase();
-    console.log(location);
     setTitleError(false);
+    // const location = locationInputRef.current.value.toUpperCase();
 
     // initiate endpoint request
-    if (location) {
-      // fetchLocation({ location });
-    }
+    // if (location) {
+    //   // fetchLocation({ location });
+    // }
 
-    if (location === '') {
-      setTitleError(true);
-    }
+    // if (location === '') {
+    //   setTitleError(true);
+    // }
   }
 
   return (
@@ -99,25 +97,12 @@ const UpdateLocation = ({ setBtns, result }) => {
           fullWidth
           required
           variant='outlined'
-          InputProps={{
-            readOnly: true,
-            value: result.location,
-          }}
-        />
-
-        <TextField
-          className={classes.field}
-          color='primary'
-          label='SpeedLimit'
-          fullWidth
-          required
-          variant='outlined'
-          value={result.speedlimit}
-          onChange={(e) =>
-            (e.target.value = ('' + e.target.value).toUpperCase())
-          }
-          error={titleError}
-          inputRef={titleInputRef}
+          value={result.location}
+          // onInput={(e) =>
+          //   (e.target.value = ('' + e.target.value).toUpperCase())
+          // }
+          // inputRef={locationInputRef}
+          // onChange={(e) => setLocation(e.target.value)}
         />
 
         <Button

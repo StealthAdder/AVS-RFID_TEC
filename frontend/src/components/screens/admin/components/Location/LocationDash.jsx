@@ -9,6 +9,7 @@ import { useState } from 'react';
 import Options from './Options';
 import SearchLocation from './SearchLocation';
 import UpdateLocation from './UpdateLocation';
+import AddLocation from './AddLocation';
 const LocationDash = () => {
   const [btns, setBtns] = useState(true);
   // signals
@@ -46,17 +47,16 @@ const LocationDash = () => {
           setBtns={setBtns}
         />
       )}
-      {searchLocation && (
+      {/* {searchLocation && (
         <SearchLocation
           setSearchLocation={setSearchLocation}
           setUpdateLocation={setUpdateLocation}
           setResult={setResult}
           setBtns={setBtns}
         />
-      )}
-      {updateLocation && <UpdateLocation result={result} setBtns={setBtns} />}
-
-      {/* need to change file names */}
+      )} */}
+      {/* {updateLocation && <UpdateLocation result={result} setBtns={setBtns} />} */}
+      {addLocation && <AddLocation />}
     </div>
   );
 };
