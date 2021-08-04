@@ -4,6 +4,7 @@ import Dashoptions from '../Dashoptions';
 import Home from './Home';
 import SearchSystem from '../SearchVehicle/SearchSystem';
 import SearchBar from '../SearchVehicle/SearchBar';
+import SearchLocation from '../Location/SearchLocation';
 const Dashboard = () => {
   const useStyles = makeStyles({
     field: {
@@ -14,15 +15,25 @@ const Dashboard = () => {
   });
   const classes = useStyles();
   const [homeStatus, setHomeStatus] = useState(true);
-  const [searchVehicleStatus, setSearchVehicleStatus] = useState(false);
+  const [searchSystem, setSearchSystem] = useState(false);
+  const [updateSpeedLimit, setupdateSpeedLimit] = useState(false);
+  // use to close the dashoptions or colapse the whole page
+  const [closeDashoptions, setDashoptions] = useState(true);
   return (
-    <Dashoptions
-      setHomeStatus={setHomeStatus}
-      setSearchVehicleStatus={setSearchVehicleStatus}
-    >
-      {homeStatus && <Home />}
-      {searchVehicleStatus && <SearchBar />}
-    </Dashoptions>
+    <>
+      {closeDashoptions && (
+        <Dashoptions
+          setHomeStatus={setHomeStatus}
+          setSearchSystem={setSearchSystem}
+          setupdateSpeedLimit={setupdateSpeedLimit}
+        >
+          {homeStatus && <Home />}
+          {searchSystem && <SearchSystem />}
+          {/* speedLimit update page */}
+          {updateSpeedLimit && <SearchLocation />}
+        </Dashoptions>
+      )}
+    </>
   );
 };
 

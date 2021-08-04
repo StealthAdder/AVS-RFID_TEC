@@ -48,6 +48,8 @@ app.use(
 );
 
 app.use('/userportal_sso', require('./core/routes/userportal_sso/upRoutes'));
+
+app.use('/admin_sso', require('./core/routes/admin_sso/asRoutes'));
 const PORT = process.env.PORT || 5000;
 const SERVER_IP = process.env.HOST || 'localhost';
 

@@ -7,11 +7,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-const SearchBar = ({
-  setVehicleSearchRes,
-  setSearchSystemDash,
-  setSearchBar,
-}) => {
+const SearchLocation = () => {
   const useStyles = makeStyles({
     btn: {
       '&:hover': {
@@ -31,49 +27,48 @@ const SearchBar = ({
     },
   });
   const classes = useStyles();
-  // states
+
   const [titleError, setTitleError] = useState(false);
-  // Ref
+
   const titleInputRef = useRef();
 
   // POST FETCH
   const BackendIp = process.env.REACT_APP_BACKEND_IP;
-  const fetchTag = async (rf_tag) => {
+  const fetchLocation = async (location) => {
     setTitleError(false);
     try {
-      const res = await fetch(`${BackendIp}/userportal_sso/searchTag`, {
+      // endpoint under admin route
+      const res = await fetch(`${BackendIp}/admin_sso/location`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
         },
-        body: JSON.stringify(rf_tag),
+        body: JSON.stringify(location),
       });
       const data = await res.json();
-      // console.log(data);
-      setVehicleSearchRes(data.searchResult);
-      setSearchBar(false);
-      setSearchSystemDash(true);
+      console.log(data);
     } catch (error) {
       setTitleError(true);
     }
-
-    // Result of search for vehicle.
   };
+
+  // Submit Handler
   function submitHandler(event) {
     event.preventDefault();
-    const rf_tag = titleInputRef.current.value.toUpperCase();
-    console.log(rf_tag);
+    const location = titleInputRef.current.value.toUpperCase();
+    console.log(location);
     setTitleError(false);
 
     // initiate endpoint request
-    if (rf_tag) {
-      fetchTag({ rf_tag });
+    if (location) {
+      fetchLocation({ location });
     }
 
-    if (rf_tag === '') {
+    if (location === '') {
       setTitleError(true);
     }
   }
+
   return (
     <div>
       <Typography
@@ -82,13 +77,13 @@ const SearchBar = ({
         component='h2'
         gutterBottom
       >
-        Search for Records
+        Search Location
       </Typography>
       <form noValidate autoComplete='off' onSubmit={submitHandler}>
         <TextField
           className={classes.field}
           color='primary'
-          label='Vehicle No./RF_TAG'
+          label='Pincode/Location'
           fullWidth
           required
           variant='outlined'
@@ -113,4 +108,4 @@ const SearchBar = ({
   );
 };
 
-export default SearchBar;
+export default SearchLocation;

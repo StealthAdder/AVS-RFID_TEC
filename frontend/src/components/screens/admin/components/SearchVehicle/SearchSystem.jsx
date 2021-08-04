@@ -1,12 +1,27 @@
-import SearchBar from './SearchBar';
 import { useState } from 'react';
+import SearchBar from './SearchBar';
+import SearchSystemDash from './SearchSystemDash';
 const SearchSystem = () => {
-  const [vehicleData, setVehicleData] = useState([]);
-  console.log(vehicleData);
+  const [vehicleSearchRes, setVehicleSearchRes] = useState([]);
+  const [searchBar, setSearchBar] = useState(true);
+  const [searchSystemDash, setSearchSystemDash] = useState(false);
+  // console.log(vehicleSearchRes);
   return (
     // close Dashboard Home using introstatus prop
     <>
-      <SearchBar setVehicleData={setVehicleData} />
+      {searchBar && (
+        <SearchBar
+          setSearchBar={setSearchBar}
+          setVehicleSearchRes={setVehicleSearchRes}
+          setSearchSystemDash={setSearchSystemDash}
+        />
+      )}
+      {searchSystemDash && (
+        <SearchSystemDash
+          setSearchBar={setSearchBar}
+          vehicleSearchRes={vehicleSearchRes}
+        />
+      )}
     </>
   );
 };

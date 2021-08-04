@@ -18,7 +18,12 @@ import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
-const Dashoptions = ({ children, setHomeStatus, setSearchVehicleStatus }) => {
+const Dashoptions = ({
+  children,
+  setHomeStatus,
+  setSearchSystem,
+  setupdateSpeedLimit,
+}) => {
   const drawerWidth = 220;
 
   const useStyles = makeStyles((theme) => {
@@ -75,7 +80,8 @@ const Dashoptions = ({ children, setHomeStatus, setSearchVehicleStatus }) => {
             onClick={() => {
               console.log('Home');
               setHomeStatus(true);
-              setSearchVehicleStatus(false);
+              setSearchSystem(false);
+              setupdateSpeedLimit(false);
             }}
             button
           >
@@ -89,7 +95,9 @@ const Dashoptions = ({ children, setHomeStatus, setSearchVehicleStatus }) => {
             onClick={() => {
               console.log('Search Vehicles');
               setHomeStatus(false);
-              setSearchVehicleStatus(true);
+              setSearchSystem(true);
+              setupdateSpeedLimit(false);
+              // still doesnt reset the dom
             }}
             button
           >
@@ -99,16 +107,19 @@ const Dashoptions = ({ children, setHomeStatus, setSearchVehicleStatus }) => {
             <ListItemText primary='Search Vehicles' />
           </ListItem>
           <ListItem
-            key='Violations'
+            key='Update Data'
             onClick={() => {
-              console.log('Violations');
+              setHomeStatus(false);
+              setSearchSystem(false);
+              setupdateSpeedLimit(true);
+              console.log('Update Data');
             }}
             button
           >
             <ListItemIcon>
               <FlagIcon color='secondary' />
             </ListItemIcon>
-            <ListItemText primary='Violations' />
+            <ListItemText primary='SpeedLimits' />
           </ListItem>
           <ListItem
             key='Paid History'
