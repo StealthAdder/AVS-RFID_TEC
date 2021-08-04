@@ -8,12 +8,9 @@ import {
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
-const SearchLocation = ({
-  setBtns,
-  setResult,
-  setSearchLocation,
-  setUpdateLocation,
-}) => {
+const UpdateLocation = ({ setBtns, result }) => {
+  // setBtns(false);
+  console.log(result);
   const useStyles = makeStyles({
     btn: {
       // '&:hover': {
@@ -36,34 +33,34 @@ const SearchLocation = ({
   const classes = useStyles();
 
   const [titleError, setTitleError] = useState(false);
+  const [searchLocation, setSearchLocation] = useState(true);
+  const [addlocationbtn, setAddLocationBtn] = useState(true);
 
   const titleInputRef = useRef();
 
   // POST FETCH
   const BackendIp = process.env.REACT_APP_BACKEND_IP;
-  const fetchLocation = async (location) => {
-    setTitleError(false);
-    try {
-      // endpoint under admin route
-      const res = await fetch(`${BackendIp}/admin_sso/location`, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(location),
-      });
-      const data = await res.json();
-      // console.log(data);
-      setSearchLocation(false);
-      setUpdateLocation(true);
-      setResult(data.result);
-      if (data.result === 'Not found') {
-        setTitleError(true);
-      }
-    } catch (error) {
-      setTitleError(true);
-    }
-  };
+  // const fetchLocation = async (location) => {
+  //   setTitleError(false);
+  //   try {
+  //     // endpoint under admin route
+  //     const res = await fetch(`${BackendIp}/admin_sso/updatelocation`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-type': 'application/json',
+  //       },
+  //       body: JSON.stringify(location),
+  //     });
+  //     const data = await res.json();
+  //     console.log(data);
+  //     setResult(data.result);
+  //     if (data.result === 'Not found') {
+  //       setTitleError(true);
+  //     }
+  //   } catch (error) {
+  //     setTitleError(true);
+  //   }
+  // };
 
   // Submit Handler
   function submitHandler(event) {
@@ -74,7 +71,7 @@ const SearchLocation = ({
 
     // initiate endpoint request
     if (location) {
-      fetchLocation({ location });
+      // fetchLocation({ location });
     }
 
     if (location === '') {
@@ -90,17 +87,33 @@ const SearchLocation = ({
         component='h2'
         gutterBottom
       >
-        Search Location
+        Location Updates
       </Typography>
+
+      {/*  */}
       <form noValidate autoComplete='off' onSubmit={submitHandler}>
         <TextField
           className={classes.field}
           color='primary'
-          label='Pincode/Location'
+          label='Location'
           fullWidth
           required
           variant='outlined'
-          onInput={(e) =>
+          InputProps={{
+            readOnly: true,
+            value: result.location,
+          }}
+        />
+
+        <TextField
+          className={classes.field}
+          color='primary'
+          label='SpeedLimit'
+          fullWidth
+          required
+          variant='outlined'
+          value={result.speedlimit}
+          onChange={(e) =>
             (e.target.value = ('' + e.target.value).toUpperCase())
           }
           error={titleError}
@@ -108,7 +121,6 @@ const SearchLocation = ({
         />
 
         <Button
-          type='submit'
           variant='contained'
           color='primary'
           disableElevation
@@ -136,4 +148,4 @@ const SearchLocation = ({
   );
 };
 
-export default SearchLocation;
+export default UpdateLocation;

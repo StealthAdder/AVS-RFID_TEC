@@ -4,7 +4,8 @@ import Dashoptions from '../Dashoptions';
 import Home from './Home';
 import SearchSystem from '../SearchVehicle/SearchSystem';
 import SearchBar from '../SearchVehicle/SearchBar';
-import SearchLocation from '../Location/SearchLocation';
+import UpdateLocation from '../Location/UpdateLocation';
+import LocationDash from '../Location/LocationDash';
 const Dashboard = () => {
   const useStyles = makeStyles({
     field: {
@@ -30,7 +31,7 @@ const Dashboard = () => {
           {homeStatus && <Home />}
           {searchSystem && <SearchSystem />}
           {/* speedLimit update page */}
-          {updateSpeedLimit && <SearchLocation />}
+          {updateSpeedLimit && <LocationDash />}
         </Dashoptions>
       )}
     </>
