@@ -5,8 +5,11 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+import EditLocationIcon from '@material-ui/icons/EditLocation';
+import AddLocationIcon from '@material-ui/icons/AddLocation';
 const Options = ({ setAddLocation, setSearchLocation, setBtns }) => {
+  setAddLocation(false);
+  setSearchLocation(false);
   const useStyles = makeStyles({
     btn: {
       // '&:hover': {
@@ -39,7 +42,7 @@ const Options = ({ setAddLocation, setSearchLocation, setBtns }) => {
         variant='contained'
         color='primary'
         disableElevation
-        endIcon={<SearchIcon />}
+        startIcon={<EditLocationIcon />}
         className={classes.btn}
       >
         Update Location
@@ -54,7 +57,7 @@ const Options = ({ setAddLocation, setSearchLocation, setBtns }) => {
         variant='contained'
         color='primary'
         disableElevation
-        endIcon={<SearchIcon />}
+        endIcon={<AddLocationIcon />}
         className={classes.btn}
       >
         Add Location

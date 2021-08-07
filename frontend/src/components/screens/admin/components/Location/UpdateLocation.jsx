@@ -5,11 +5,20 @@ import {
   Button,
   makeStyles,
   Typography,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-
-const UpdateLocation = ({ setBtns, result }) => {
-  console.log(result);
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+const UpdateLocation = ({
+  setBtns,
+  result,
+  setSearchLocation,
+  setUpdateLocation,
+}) => {
   const useStyles = makeStyles({
     btn: {
       // '&:hover': {
@@ -34,34 +43,48 @@ const UpdateLocation = ({ setBtns, result }) => {
   const [locationInputError, setLocationInputError] = useState(false);
   const [zipcodeInputError, setZipcodeInputError] = useState(false);
   const [speedlimitInputError, setSpeedlimitInputError] = useState(false);
+
   const [location, setLocation] = useState(result.location);
   const [zipcode, setZipcode] = useState(result.zipcode);
   const [speedlimit, setSpeedlimit] = useState(result.speedlimit);
+  const [_id, set_Id] = useState(result._id);
+
+  // Dialog Box
+  const [successMsg, setSuccessMsg] = useState(false);
+
+  const handleClose = () => {
+    setSuccessMsg(false);
+  };
 
   // POST FETCH
   const BackendIp = process.env.REACT_APP_BACKEND_IP;
-  const locationUpdate = async (location, zipcode, speedlimit) => {
+  const locationUpdate = async (payload) => {
     setLocationInputError(false);
     setZipcodeInputError(false);
     setSpeedlimitInputError(false);
-    //   try {
-    //     // endpoint under admin route
-    //     const res = await fetch(`${BackendIp}/admin_sso/updatelocation`, {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-type': 'application/json',
-    //       },
-    //       body: JSON.stringify(location),
-    //     });
-    //     const data = await res.json();
-    //     console.log(data);
-    //     setResult(data.result);
-    //     if (data.result === 'Not found') {
-    //       setTitleError(true);
-    //     }
-    //   } catch (error) {
-    //     setTitleError(true);
-    //   }
+    try {
+      // endpoint under admin route
+      const res = await fetch(`${BackendIp}/admin_sso/updatelocation`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      // console.log(data);
+
+      if (data.msg === 'okay') {
+        console.log('update successful');
+        setSuccessMsg(true);
+      }
+
+      if (data.msg === 'Error') {
+        console.log(data.res);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // Submit Handler
@@ -74,7 +97,16 @@ const UpdateLocation = ({ setBtns, result }) => {
     if (location && zipcode && speedlimit != '') {
       // run fetch update
       console.log('running update');
-      locationUpdate({ location, zipcode, speedlimit });
+      let payload = {
+        _id,
+        location,
+        zipcode,
+        speedlimit,
+      };
+      setLocation(payload.location);
+      setZipcode(payload.zipcode);
+      setSpeedlimit(payload.speedlimit);
+      locationUpdate({ payload });
     }
 
     if (location === '') {
@@ -135,6 +167,21 @@ const UpdateLocation = ({ setBtns, result }) => {
           error={speedlimitInputError}
         />
         <Button
+          onClick={() => {
+            console.log('exit come to options');
+            setSearchLocation(false);
+            setUpdateLocation(false);
+            setBtns(true);
+          }}
+          variant='contained'
+          color='primary'
+          disableElevation
+          startIcon={<ArrowBackIcon />}
+          className={classes.btn}
+        >
+          Back
+        </Button>
+        <Button
           type='submit'
           variant='contained'
           color='primary'
@@ -144,21 +191,21 @@ const UpdateLocation = ({ setBtns, result }) => {
         >
           Update
         </Button>
-        {/* {addlocationbtn && (
-            <Button
-              onClick={() => {
-                console.log('Add Location');
-              }}
-              variant='contained'
-              color='primary'
-              disableElevation
-              endIcon={<SearchIcon />}
-              className={classes.btn}
-            >
-              Add Location
-            </Button>
-          )} */}
       </form>
+      {/* Update Success Message */}
+      <div>
+        <Dialog open={successMsg} onClose={handleClose}>
+          <DialogTitle id='alert-dialog-title'>
+            Successfully Updated
+          </DialogTitle>
+          <DialogContent></DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color='primary'>
+              Done
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
     </div>
   );
 };
