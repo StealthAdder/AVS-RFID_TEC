@@ -47,15 +47,15 @@ const LocationDash = () => {
           setBtns={setBtns}
         />
       )}
-      {/* {searchLocation && (
+      {searchLocation && (
         <SearchLocation
           setSearchLocation={setSearchLocation}
           setUpdateLocation={setUpdateLocation}
           setResult={setResult}
           setBtns={setBtns}
         />
-      )} */}
-      {/* {updateLocation && <UpdateLocation result={result} setBtns={setBtns} />} */}
+      )}
+      {updateLocation && <UpdateLocation result={result} setBtns={setBtns} />}
       {addLocation && <AddLocation />}
     </div>
   );
