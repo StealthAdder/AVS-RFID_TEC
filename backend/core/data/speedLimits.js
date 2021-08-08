@@ -1,7 +1,7 @@
 const speedLimits = [
   {
     location: 'HEBBAL',
-    zipcode: '560 032',
+    zipcode: '560032',
     speedlimit: 60,
   },
 ];

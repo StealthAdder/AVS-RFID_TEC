@@ -3,6 +3,12 @@ const speedviolationCheck = async (req, arry) => {
   const vehicleData = require('../../core/models/vehicleData');
   const fineRef = require('../models/fineRef');
   const moment = require('moment');
+  const violationMailer = require('./violationMailer');
+  const { customAlphabet } = require('nanoid');
+  const nanoid = customAlphabet(
+    '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    21
+  );
   var objStartTime = new Date(arry[1]);
 
   var objStopTime = new Date(arry[0]);
@@ -38,7 +44,7 @@ const speedviolationCheck = async (req, arry) => {
   if (speed > speedLimit) {
     // get vehicle information
     try {
-      // const vehicle = await vehicleData.findOne({ rf_tag: req.body.rf_tag });
+      const vehicle = await vehicleData.findOne({ rf_tag: req.body.rf_tag });
       const fineData = await fineRef.findOne({
         violationType: 'Speeding Violation',
       });
@@ -48,16 +54,18 @@ const speedviolationCheck = async (req, arry) => {
       try {
         var date = moment().format('MMMM Do YYYY, h:mm:ss a');
         let query = { rf_tag: req.body.rf_tag };
+        let violationData = {
+          _id: nanoid(),
+          violationType: 'Speeding Violation',
+          location: req.body.location,
+          zipcode: req.body.zipcode,
+          notes: speed + 'Km/h Speed Recorded',
+          eventTime: date,
+          fineAmount: fineData.fineAmount,
+        };
         let violationEvent = {
           $push: {
-            violation: {
-              violationType: 'Speeding Violation',
-              location: req.body.location,
-              zipcode: req.body.zipcode,
-              notes: speed + 'Km/h Speed Recorded',
-              eventTime: date,
-              fineAmount: fineData.fineAmount,
-            },
+            violation: violationData,
           },
         };
         let options = { new: true };
@@ -67,7 +75,7 @@ const speedviolationCheck = async (req, arry) => {
           options
         );
         console.log(`Violation Ticket generated for ${req.body.rf_tag}`);
-        // console.log(event);
+        await violationMailer(vehicle, violationData);
       } catch (err) {
         console.error(err);
       }
