@@ -5,7 +5,7 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import EditLocationIcon from '@material-ui/icons/EditLocation';
 import AddLocationIcon from '@material-ui/icons/AddLocation';
 import SVFine from './SVFine';
@@ -33,9 +33,10 @@ const Fines = () => {
   const [svfine, setSVFine] = useState(false);
   const [tsvfine, setTSVFine] = useState(false);
   const [svFineData, setSVFineData] = useState({});
-  const [tsvFineData, setTSVFineData] = useState({});
+  const [tsvFineData, setTSVFineData] = useState([]);
 
   const BackendIp = process.env.REACT_APP_BACKEND_IP;
+
   const fetchFines = async () => {
     try {
       const res = await fetch(`${BackendIp}/admin_sso/fines`, {
@@ -46,11 +47,17 @@ const Fines = () => {
       });
       const data = await res.json();
       console.log(data);
+      setSVFineData(data.sv);
+      setTSVFineData(data.tsv);
     } catch (error) {
       console.log(error);
     }
   };
-  fetchFines();
+
+  useEffect(() => {
+    fetchFines();
+  }, []);
+
   return (
     <div>
       <Typography
@@ -91,8 +98,8 @@ const Fines = () => {
         Traffic Signal Violation
       </Button>
       {/* components */}
-      {svfine && <SVFine />}
-      {tsvfine && <TSVFine />}
+      {svfine && <SVFine svFineData={svFineData} />}
+      {tsvfine && <TSVFine tsvFineData={tsvFineData} />}
     </div>
   );
 };

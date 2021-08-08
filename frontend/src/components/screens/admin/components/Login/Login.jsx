@@ -72,6 +72,7 @@ const Login = ({ setLoginStatus, setIsLogged }) => {
             className={classes.field}
             color='primary'
             label='Admin Password'
+            type={'password'}
             fullWidth
             required
             variant='outlined'

@@ -11,7 +11,9 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@material-ui/core';
-const TSVFine = () => {
+const TSVFine = ({ tsvFineData }) => {
+  console.log(tsvFineData);
+
   const useStyles = makeStyles({
     btn: {
       // '&:hover': {
@@ -32,8 +34,9 @@ const TSVFine = () => {
     },
   });
   const classes = useStyles();
-  const [fineAmount, setfineAmount] = useState('800');
   const [fineAmountInputError, setfineAmountInputError] = useState(false);
+  const [fineAmount, setFineAmount] = useState(tsvFineData.fineAmount);
+  const [violationType, setViolationType] = useState(tsvFineData.violationType);
 
   // Dialog Box
   const [successMsg, setSuccessMsg] = useState(false);
@@ -46,7 +49,7 @@ const TSVFine = () => {
   const updateAmt = async (payload) => {
     try {
       // endpoint under admin route
-      const res = await fetch(`${BackendIp}/admin_sso/tsvUpdate`, {
+      const res = await fetch(`${BackendIp}/admin_sso/updatefine`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
@@ -74,6 +77,7 @@ const TSVFine = () => {
     if (fineAmount != '') {
       // update fine amt
       let payload = {
+        _id: tsvFineData._id,
         fineAmount: fineAmount,
       };
       updateAmt(payload);
@@ -107,7 +111,7 @@ const TSVFine = () => {
           required
           variant='outlined'
           value={fineAmount}
-          onChange={(e) => setfineAmount(e.target.value.toUpperCase())}
+          onChange={(e) => setFineAmount(e.target.value.toUpperCase())}
           error={fineAmountInputError}
         />
         <Button
@@ -123,7 +127,7 @@ const TSVFine = () => {
       </form>
       {/* Update Success Message */}
       <div>
-        {/* <Dialog open={successMsg} onClose={handleClose}>
+        <Dialog open={successMsg} onClose={handleClose}>
           <DialogTitle id='alert-dialog-title'>
             Successfully Updated
           </DialogTitle>
@@ -133,7 +137,7 @@ const TSVFine = () => {
               Done
             </Button>
           </DialogActions>
-        </Dialog> */}
+        </Dialog>
       </div>
     </div>
   );
