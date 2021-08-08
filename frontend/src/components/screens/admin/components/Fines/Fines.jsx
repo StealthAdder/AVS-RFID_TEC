@@ -5,11 +5,12 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core';
+import { useState } from 'react';
 import EditLocationIcon from '@material-ui/icons/EditLocation';
 import AddLocationIcon from '@material-ui/icons/AddLocation';
-const Options = ({ setAddLocation, setSearchLocation, setBtns }) => {
-  setAddLocation(false);
-  setSearchLocation(false);
+import SVFine from './SVFine';
+import TSVFine from './TSVFine';
+const Fines = () => {
   const useStyles = makeStyles({
     btn: {
       margin: '0px 5px',
@@ -27,6 +28,29 @@ const Options = ({ setAddLocation, setSearchLocation, setBtns }) => {
     },
   });
   const classes = useStyles();
+
+  // useState
+  const [svfine, setSVFine] = useState(false);
+  const [tsvfine, setTSVFine] = useState(false);
+  const [svFineData, setSVFineData] = useState({});
+  const [tsvFineData, setTSVFineData] = useState({});
+
+  const BackendIp = process.env.REACT_APP_BACKEND_IP;
+  const fetchFines = async () => {
+    try {
+      const res = await fetch(`${BackendIp}/admin_sso/fines`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  fetchFines();
   return (
     <div>
       <Typography
@@ -35,14 +59,14 @@ const Options = ({ setAddLocation, setSearchLocation, setBtns }) => {
         component='h2'
         gutterBottom
       >
-        Update & Add Location
+        Update Fines
       </Typography>
+
       <Button
         onClick={() => {
-          console.log('Update Location');
-          setSearchLocation(true);
-          setAddLocation(false);
-          setBtns(false);
+          console.log('Speed Violation');
+          setSVFine(true);
+          setTSVFine(false);
         }}
         variant='contained'
         color='primary'
@@ -50,14 +74,13 @@ const Options = ({ setAddLocation, setSearchLocation, setBtns }) => {
         startIcon={<EditLocationIcon />}
         className={classes.btn}
       >
-        Update Location
+        Speeding Violation
       </Button>
       <Button
         onClick={() => {
-          console.log('Add Location');
-          setAddLocation(true);
-          setSearchLocation(false);
-          setBtns(false);
+          console.log('Traffic Signal Violation');
+          setSVFine(false);
+          setTSVFine(true);
         }}
         variant='contained'
         color='primary'
@@ -65,10 +88,13 @@ const Options = ({ setAddLocation, setSearchLocation, setBtns }) => {
         endIcon={<AddLocationIcon />}
         className={classes.btn}
       >
-        Add Location
+        Traffic Signal Violation
       </Button>
+      {/* components */}
+      {svfine && <SVFine />}
+      {tsvfine && <TSVFine />}
     </div>
   );
 };
 
-export default Options;
+export default Fines;

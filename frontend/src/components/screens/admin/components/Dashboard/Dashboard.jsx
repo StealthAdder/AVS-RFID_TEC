@@ -6,6 +6,7 @@ import SearchSystem from '../SearchVehicle/SearchSystem';
 import SearchBar from '../SearchVehicle/SearchBar';
 import UpdateLocation from '../Location/UpdateLocation';
 import LocationDash from '../Location/LocationDash';
+import Fines from '../Fines/Fines';
 const Dashboard = () => {
   const useStyles = makeStyles({
     field: {
@@ -18,6 +19,7 @@ const Dashboard = () => {
   const [homeStatus, setHomeStatus] = useState(true);
   const [searchSystem, setSearchSystem] = useState(false);
   const [updateSpeedLimit, setupdateSpeedLimit] = useState(false);
+  const [fineSystem, setFineSystem] = useState(false);
   // use to close the dashoptions or colapse the whole page
   const [closeDashoptions, setDashoptions] = useState(true);
   return (
@@ -27,11 +29,13 @@ const Dashboard = () => {
           setHomeStatus={setHomeStatus}
           setSearchSystem={setSearchSystem}
           setupdateSpeedLimit={setupdateSpeedLimit}
+          setFineSystem={setFineSystem}
         >
           {homeStatus && <Home />}
           {searchSystem && <SearchSystem />}
           {/* speedLimit update page */}
           {updateSpeedLimit && <LocationDash />}
+          {fineSystem && <Fines setFineSystem={setFineSystem} />}
         </Dashoptions>
       )}
     </>

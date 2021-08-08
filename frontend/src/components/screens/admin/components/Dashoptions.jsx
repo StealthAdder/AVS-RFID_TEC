@@ -13,16 +13,18 @@ import {
   Link,
 } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import FlagIcon from '@material-ui/icons/Flag';
+import FindInPageIcon from '@material-ui/icons/FindInPage';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
-import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
+import SpeedIcon from '@material-ui/icons/Speed';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import MoneyIcon from '@material-ui/icons/Money';
 const Dashoptions = ({
   children,
   setHomeStatus,
   setSearchSystem,
   setupdateSpeedLimit,
+  setFineSystem,
 }) => {
   const drawerWidth = 220;
 
@@ -75,6 +77,7 @@ const Dashoptions = ({
       >
         <Toolbar />
         <List>
+          {/* Home */}
           <ListItem
             key='Home'
             onClick={() => {
@@ -82,6 +85,7 @@ const Dashoptions = ({
               setHomeStatus(true);
               setSearchSystem(false);
               setupdateSpeedLimit(false);
+              setFineSystem(false);
             }}
             button
           >
@@ -90,6 +94,7 @@ const Dashoptions = ({
             </ListItemIcon>
             <ListItemText primary='Home' />
           </ListItem>
+          {/* Search Vehicles */}
           <ListItem
             key='Search'
             onClick={() => {
@@ -97,48 +102,63 @@ const Dashoptions = ({
               setHomeStatus(false);
               setSearchSystem(true);
               setupdateSpeedLimit(false);
+              setFineSystem(false);
               // still doesnt reset the dom
             }}
             button
           >
             <ListItemIcon>
-              <AssignmentIndIcon color='secondary' />
+              <FindInPageIcon color='secondary' />
             </ListItemIcon>
-            <ListItemText primary='Search Vehicles' />
+            <ListItemText primary='Search Records' />
           </ListItem>
+          {/* SpeedLimits */}
           <ListItem
-            key='Update Data'
+            key='SpeedLimits'
             onClick={() => {
               setHomeStatus(false);
               setSearchSystem(false);
               setupdateSpeedLimit(true);
-              console.log('Update Data');
+              setFineSystem(false);
+              console.log('SpeedLimits');
             }}
             button
           >
             <ListItemIcon>
-              <FlagIcon color='secondary' />
+              <SpeedIcon color='secondary' />
             </ListItemIcon>
             <ListItemText primary='SpeedLimits' />
           </ListItem>
+          {/* Fines */}
           <ListItem
-            key='Paid History'
+            key='Fines'
             onClick={() => {
-              console.log('Paid History');
+              console.log('Fines');
+              setHomeStatus(false);
+              setSearchSystem(false);
+              setupdateSpeedLimit(false);
+              setFineSystem(true);
             }}
             button
           >
             <ListItemIcon>
-              <PlaylistAddCheckIcon color='secondary' />
+              <MoneyIcon color='secondary' />
             </ListItemIcon>
-            <ListItemText primary='Paid History' />
+            <ListItemText primary='Fines' />
           </ListItem>
-          <ListItem key='Find Vehicle' onClick={() => {}} button>
+          {/* X */}
+          {/* <ListItem
+            key='Fines'
+            onClick={() => {
+              console.log('Find Location');
+            }}
+            button
+          >
             <ListItemIcon>
               <LocationOnIcon color='secondary' />
             </ListItemIcon>
-            <ListItemText primary='Find Vehicle' />
-          </ListItem>
+            <ListItemText primary='Find Location' />
+          </ListItem> */}
         </List>
       </Drawer>
       <Toolbar />
