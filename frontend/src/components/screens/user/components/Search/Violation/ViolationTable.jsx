@@ -13,6 +13,7 @@ const ViolationTable = ({
   vDetailState,
   setVioTable,
 }) => {
+  // console.log('mock', MOCK_DATA);
   const useStyles = makeStyles({
     table: {
       minWidth: 700,

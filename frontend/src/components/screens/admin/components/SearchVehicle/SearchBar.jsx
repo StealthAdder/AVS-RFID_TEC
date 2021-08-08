@@ -8,9 +8,10 @@ import {
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 const SearchBar = ({
-  setVehicleSearchRes,
+  setMOCK_DATA,
   setSearchSystemDash,
   setSearchBar,
+  setVehicleDetailsPg,
 }) => {
   const useStyles = makeStyles({
     btn: {
@@ -30,6 +31,7 @@ const SearchBar = ({
       textAlign: 'center',
     },
   });
+
   const classes = useStyles();
   // states
   const [titleError, setTitleError] = useState(false);
@@ -50,9 +52,10 @@ const SearchBar = ({
       });
       const data = await res.json();
       // console.log(data);
-      setVehicleSearchRes(data.searchResult);
+      setMOCK_DATA(data);
       setSearchBar(false);
       setSearchSystemDash(true);
+      setVehicleDetailsPg(true);
     } catch (error) {
       setTitleError(true);
     }

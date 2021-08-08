@@ -2,18 +2,32 @@ import { Container, Typography } from '@material-ui/core';
 const Home = () => {
   return (
     <div>
-      <Typography variant='h5'>Dashboard</Typography>
-      <Typography>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-        temporibus explicabo maxime ab veritatis ad quod nisi molestiae, ex
-        perferendis culpa fugit nostrum pariatur quibusdam, cupiditate, veniam
-        asperiores omnis quaerat! Lorem ipsum dolor sit amet, consectetur
-        adipisicing elit. Ab autem eligendi iste repellendus rerum voluptates
-        tempore. Illo excepturi iure, officiis laborum nostrum, obcaecati
-        commodi labore reprehenderit perferendis quos quo dolore. Lorem ipsum
-        dolor, sit amet consectetur adipisicing elit. Autem hic animi itaque
-        laboriosam quo molestiae, ratione aut qui obcaecati id libero optio nemo
-        voluptatem suscipit ex nam, deleniti at impedit?
+      <Typography variant='h4' gutterBottom>
+        Dashboard
+      </Typography>
+      <Typography variant='h6' color='error'>
+        Never Drink & Drive.
+      </Typography>
+      <Typography variant='h6' color='error'>
+        Always Wear Seat Belt.
+      </Typography>
+      <Typography variant='h6' color='error'>
+        Keep a Safe Distance from the vehicle ahead.
+      </Typography>
+      <Typography variant='h6' color='error'>
+        Always Avoid Distractions.
+      </Typography>
+      <Typography variant='h6' color='error'>
+        Never Break Red Signal.
+      </Typography>
+      <Typography variant='h6' color='error'>
+        Always Drive Within Speed Limit.
+      </Typography>
+      <Typography variant='h6' color='error'>
+        Avoid the Drowsiness While Driving.
+      </Typography>
+      <Typography variant='h6' color='error'>
+        Watch Out For Drivers On the Road.
       </Typography>
     </div>
   );

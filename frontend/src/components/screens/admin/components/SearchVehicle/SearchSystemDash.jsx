@@ -5,12 +5,17 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core';
-const SearchSystemDash = ({ setSearchBar, vehicleSearchRes }) => {
+const SearchSystemDash = ({
+  setSearchBar,
+  MOCK_DATA,
+  setVehicleDetailsPg,
+  setVioTable,
+  setVDetailState,
+}) => {
+  const searchResult = MOCK_DATA.searchResult;
   const useStyles = makeStyles({
     btn: {
-      '&:hover': {
-        backgroundColor: 'none',
-      },
+      margin: '0px 5px',
     },
     title: {
       marginBottom: 20,
@@ -35,21 +40,49 @@ const SearchSystemDash = ({ setSearchBar, vehicleSearchRes }) => {
         component='h2'
         gutterBottom
       >
-        Searched RF TAG: {vehicleSearchRes.rf_tag}
+        Searched RF TAG: {searchResult.rf_tag}
       </Typography>
-      <Button variant='contained'>Default</Button>
-      <Button variant='contained' color='primary'>
-        Primary
+      <Button
+        variant='contained'
+        color='primary'
+        className={classes.btn}
+        onClick={() => {
+          // load details
+          console.log('load details');
+          setVehicleDetailsPg(true);
+          setVDetailState(false);
+          setVioTable(false);
+        }}
+      >
+        Vehicle Details
       </Button>
-      <Button variant='contained' color='secondary'>
-        Secondary
+      <Button
+        variant='contained'
+        color='primary'
+        className={classes.btn}
+        onClick={() => {
+          // load details
+          console.log('load violations');
+          setVehicleDetailsPg(false);
+          setVioTable(true);
+        }}
+      >
+        Violations
       </Button>
-      <Button variant='contained' disabled>
-        Disabled
-      </Button>
-      <Button variant='contained' color='primary' href='#contained-buttons'>
-        Link
-      </Button>
+      {/* <Button
+        variant='contained'
+        color='primary'
+        className={classes.btn}
+        onClick={() => {
+          // load details
+          console.log('load violations');
+          setVehicleDetailsPg(false);
+          setVioTable(false);
+          setLocateVehicle(true);
+        }}
+      >
+        Locate Vehicle
+      </Button> */}
     </div>
   );
 };
