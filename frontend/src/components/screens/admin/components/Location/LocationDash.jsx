@@ -63,7 +63,9 @@ const LocationDash = () => {
           setBtns={setBtns}
         />
       )}
-      {addLocation && <AddLocation />}
+      {addLocation && (
+        <AddLocation setAddLocation={setAddLocation} setBtns={setBtns} />
+      )}
     </div>
   );
 };

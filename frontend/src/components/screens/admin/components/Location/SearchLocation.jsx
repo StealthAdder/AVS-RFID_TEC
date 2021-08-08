@@ -7,6 +7,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const SearchLocation = ({
   setBtns,
@@ -109,7 +110,21 @@ const SearchLocation = ({
           error={titleError}
           inputRef={titleInputRef}
         />
-
+        <Button
+          onClick={() => {
+            console.log('exit come to options');
+            setSearchLocation(false);
+            setUpdateLocation(false);
+            setBtns(true);
+          }}
+          variant='contained'
+          color='primary'
+          disableElevation
+          startIcon={<ArrowBackIcon />}
+          className={classes.btn}
+        >
+          Back
+        </Button>
         <Button
           type='submit'
           variant='contained'

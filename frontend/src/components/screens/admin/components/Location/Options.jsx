@@ -12,9 +12,6 @@ const Options = ({ setAddLocation, setSearchLocation, setBtns }) => {
   setSearchLocation(false);
   const useStyles = makeStyles({
     btn: {
-      // '&:hover': {
-      //   backgroundColor: 'none',
-      // },
       margin: '0px 5px',
     },
     title: {
