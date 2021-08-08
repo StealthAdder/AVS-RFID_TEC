@@ -6,8 +6,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { useState, useEffect } from 'react';
-import EditLocationIcon from '@material-ui/icons/EditLocation';
-import AddLocationIcon from '@material-ui/icons/AddLocation';
+import EditIcon from '@material-ui/icons/Edit';
 import SVFine from './SVFine';
 import TSVFine from './TSVFine';
 const Fines = () => {
@@ -78,7 +77,7 @@ const Fines = () => {
         variant='contained'
         color='primary'
         disableElevation
-        startIcon={<EditLocationIcon />}
+        startIcon={<EditIcon />}
         className={classes.btn}
       >
         Speeding Violation
@@ -92,7 +91,7 @@ const Fines = () => {
         variant='contained'
         color='primary'
         disableElevation
-        endIcon={<AddLocationIcon />}
+        endIcon={<EditIcon />}
         className={classes.btn}
       >
         Traffic Signal Violation

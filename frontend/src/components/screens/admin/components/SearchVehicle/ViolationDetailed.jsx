@@ -42,6 +42,7 @@ const ViolationDetailed = ({ violationData, setVDetailState, setVioTable }) => {
   const classes = useStyles();
   return (
     <Container>
+      <Typography variant='h6'>Violation Details</Typography>
       <Card className={classes.root}>
         <CardContent>
           <Typography className={classes.title}>

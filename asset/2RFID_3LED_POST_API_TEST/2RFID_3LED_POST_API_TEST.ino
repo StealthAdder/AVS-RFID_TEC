@@ -134,7 +134,7 @@ void loop() {
       String Station_info;
       
       String location="HEBBAL";
-      String zipcode="560 032";
+      String zipcode="560032";
       String rfd_id = "ID-"+String(reader);
       
       Station_info = (String(location)+String(rfd_id)+" ZIP-"+String(zipcode));

@@ -151,8 +151,8 @@ void rfid() {
   }
   
       String Station_info;
-      String location="HEBBAL";
-      String zipcode="560 032";
+      String location="NEW BEL ROAD";
+      String zipcode="560054";
       String rfd_id = "RFD-1";
       
       Station_info = (String(location)+String(rfd_id)+" ZIP-"+String(zipcode));
